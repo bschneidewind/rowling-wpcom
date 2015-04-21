@@ -1,0 +1,38 @@
+*** Rowling changelog ***
+
+Version 1.04 (2015-04-07)
+------------------------- 
+- Properly attribute all template files
+- Added image.php
+- Added rtl.css
+- Escaped all content
+- Update spacing/formatting
+
+
+Version 1.03 (2015-04-07)
+------------------------- 
+- Added some missing PHP functions to the footer
+
+
+
+Version 1.02 (2015-02-28)
+------------------------- 
+- Renamed lovecraft.pot to rowling.pot. This is why you don't do two themes at once, kids.
+
+
+
+Version 1.01 (2015-02-23)
+------------------------- 
+- Replaced doubletaptogo.min.js with doubletaptogo.js (non-minified version)
+- Replaced flexslider.min.js with flexslider.js (non-minified version)
+- Replaced fontawesome.min.css with fontawesome.css (non-minified version)
+- Renamed xx_XX.pot to rowling.pot
+- Added theme text-domain to style.css
+- Removed wp_is_mobile() from functions.php
+- Added theme function prefix to html_js_class() in functions.php
+- Changed home_url() to home_url('/') in header.php
+
+
+
+Version 1.00 (2015-02-03)
+------------------------- 
