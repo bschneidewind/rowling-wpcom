@@ -76,8 +76,6 @@
 	</div> <!-- /content -->
 	
 	<?php get_sidebar(); ?>
-	
-	<div class="clear"></div>
 
 </div> <!-- /wrapper.section-inner -->
 		

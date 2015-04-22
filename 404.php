@@ -1,6 +1,6 @@
 <?php
 /**
- * The template used for displaying page the 404 error page
+ * The template for displaying 404 error pages
  *
  * @package Rowling
  */
@@ -25,8 +25,6 @@ get_header(); ?>
 	</div> <!-- /content -->
 	
 	<?php get_sidebar(); ?>
-	
-	<div class="clear"></div>
 
 </div> <!-- /wrapper.section-inner -->
 

@@ -67,8 +67,6 @@ get_header(); ?>
 
 	<?php get_sidebar(); ?>
 
-	<div class="clear"></div>
-
 </div> <!-- /wrapper.section-inner -->
 
 <?php get_footer(); ?>

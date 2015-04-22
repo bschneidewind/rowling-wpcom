@@ -23,7 +23,7 @@
 	2.	Structure
 	3.	Top Navigation
 	4.	Search Container
-	5.	Header
+	5.	Header and Footer
 	6.	Navigation
 	7.	Content
 	8.	Post Formats
@@ -239,7 +239,6 @@ body a,
 	float: right;
 	padding: 50px 0 50px 3.75%;
 }
-
 
 /* -------------------------------------------------------------------------------- */
 /*	3.	Top Navigation
@@ -485,7 +484,7 @@ body a,
 
 
 /* -------------------------------------------------------------------------------- */
-/*	5.	Header
+/*	5.	Header/Footer
 /* -------------------------------------------------------------------------------- */
 
 
@@ -519,6 +518,13 @@ body a,
 .blog-logo,
 .blog-logo img {
 	display: block;
+}
+
+/* Footer ----------------------------------------- */
+
+
+.site-footer {
+	clear:both;
 }
 
 

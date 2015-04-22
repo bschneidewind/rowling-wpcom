@@ -144,8 +144,6 @@
 	
 	<?php get_sidebar(); ?>
 	
-	<div class="clear"></div>
-	
 </div> <!-- /wrapper -->
 		
 <?php get_footer(); ?>
