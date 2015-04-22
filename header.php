@@ -19,160 +19,50 @@
 </head>
 	
 <body <?php body_class(); ?>>
-	
-	<?php if ( has_nav_menu( 'secondary' ) || has_nav_menu( 'social' ) ) : ?>
-	
-		<div class="top-nav">
+
+	<div class="top-nav">
+		<div class="section-inner clearfix">
+			<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu', 'menu_class' => 'secondary-menu', 'container' => 'false' ) ); ?>
 			
-			<div class="section-inner">
-				
-				<ul class="secondary-menu">
-					
-					<?php 
-						if ( has_nav_menu( 'secondary' ) ) {
-							wp_nav_menu( array( 
-							
-								'container' => '', 
-								'items_wrap' => '%3$s',
-								'theme_location' => 'secondary'
-															
-							) ); 
-						}
-					?>
-														
-				</ul> <!-- /secondary-menu -->
+			<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' =>	'<span class="screen-reader-text">', 'link_after'		=>	'</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s<li><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li></ul>' ) ); ?>
 			
-				<ul class="social-menu">
-					
-					<?php 
-						if ( has_nav_menu( 'social' ) ) {
-							wp_nav_menu(
-								array(
-									'theme_location'	=>	'social',
-									'container'			=>	'',
-									'container_class'	=>	'menu-social',
-									'items_wrap'		=>	'%3$s',
-									'menu_id'			=>	'menu-social-items',
-									'menu_class'		=>	'menu-items',
-									'depth'				=>	1,
-									'link_before'		=>	'<span class="screen-reader-text">',
-									'link_after'		=>	'</span>',
-									'fallback_cb'		=>	'',
-								)
-							);
-							echo '<li id="menu-item-151" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-151"><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li>';
-						}
-					?>
-					
-				</ul> <!-- /social-menu -->
-			
-			<div class="clear"></div>
-			
-			</div> <!-- /section-inner -->
-			
-		</div> <!-- /top-nav -->
-		
-	<?php endif; ?>
+		</div> <!-- /section-inner -->
+	</div> <!-- /top-nav -->
 	
 	<div class="search-container">
-		
 		<div class="section-inner">
-		
 			<?php get_search_form(); ?>
-		
 		</div> <!-- /section-inner -->
-		
 	</div> <!-- /search-container -->
 	
 	<div class="header-wrapper">
-	
 		<div class="header">
-				
 			<div class="section-inner">
-			
-				<?php if ( get_theme_mod( 'rowling_logo' ) ) : ?>
-			
-			        <a class="blog-logo" href='<?php echo esc_url( home_url('/') ); ?>' title='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>' rel='home'>
-			        	<img src='<?php echo esc_url( get_theme_mod( 'rowling_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>'>
-			        </a>
-			
-				<?php elseif ( get_bloginfo( 'description' ) || get_bloginfo( 'title' ) ) : ?>
-			
-					<h2 class="blog-title">
-						<a href="<?php echo esc_url( home_url('/') ); ?>" title="<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>" rel="home"><?php echo esc_attr( get_bloginfo( 'title' ) ); ?></a>
-					</h2>
-					
-					<?php if ( get_bloginfo( 'description' ) ) : ?>
-					
-						<h4 class="blog-description">
-							<?php bloginfo('description'); ?>
-						</h4>
-						
-					<?php endif; ?>
-					
-				<?php endif; ?>
 				
+				<?php if ( get_theme_mod( 'rowling_logo' ) ) : ?>
+	
+				<a class="blog-logo" href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>' rel='home'>
+					<img src='<?php echo esc_url( get_theme_mod( 'rowling_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>'>
+				</a>
+	
+				<?php else : ?>
+	
+				<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'title' ) . ' &mdash; ' . get_bloginfo( 'description' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'title' ) ); ?></a></h2>
+				<h4 class="blog-description"><?php bloginfo( 'description' ); ?></h4>
+	
+				<?php endif; ?>
+
 				<div class="nav-toggle">
-					
 					<div class="bars">
 						<div class="bar"></div>
 						<div class="bar"></div>
 						<div class="bar"></div>
 					</div>
-					
 				</div> <!-- /nav-toggle -->
 			
 			</div> <!-- /section-inner -->
-			
 		</div> <!-- /header -->
-		
-		<div class="navigation">
-			
-			<div class="section-inner">
-				
-				<ul class="primary-menu">
-					
-					<?php if ( has_nav_menu( 'primary' ) ) {
-																	
-						wp_nav_menu( array( 
-						
-							'container' => '', 
-							'items_wrap' => '%3$s',
-							'theme_location' => 'primary'
-														
-						) ); } else {
-					
-						wp_list_pages( array(
-						
-							'container' => '',
-							'title_li' => ''
-						
-						));
-						
-					} ?>
-														
-				</ul>
-				
-				<div class="clear"></div>
-				
-			</div>
-			
-		</div> <!-- /navigation -->
-			
-		<ul class="mobile-menu">
-			
-			<?php 
-				if ( has_nav_menu( 'primary' ) ) {
-					wp_nav_menu( array( 
-					
-						'container' => '', 
-						'items_wrap' => '%3$s',
-						'theme_location' => 'primary'
-													
-					) ); 
-				}
-			?>
-			
-		</ul> <!-- /mobile-menu -->
-			
+
+		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'primary-menu clearfix', 'container' => 'div', 'container_class' => 'navigation' ) ); ?>
+
 	</div> <!-- /header-wrapper -->

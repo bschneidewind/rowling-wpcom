@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 	// Toggle mobile menu
 	$(".nav-toggle").on("click", function(){	
 		$(this).toggleClass("active");
-		$(".mobile-menu").slideToggle();
+		$(".primary-menu").slideToggle();
 		if ($(".search-toggle").hasClass("active")) {
 			$(".search-toggle").removeClass("active");
 			$(".search-container").slideToggle();
@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
 		$(".search-container").slideToggle();
 		if ($(".nav-toggle").hasClass("active")) {
 			$(".nav-toggle").removeClass("active");
-			$(".mobile-menu").slideToggle();
+			$(".primary-menu").slideToggle();
 		}
 		return false;
 	});
@@ -30,7 +30,6 @@ jQuery(document).ready(function($) {
 	
 		if ($(window).width() >= 850) {
 			$(".nav-toggle").removeClass("active");
-			$('.mobile-menu').hide();
 		}
 		
 		if ($(window).width() <= 850) {

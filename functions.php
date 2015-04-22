@@ -644,7 +644,6 @@ class rowling_Customize {
 	           <?php self::rowling_generate_css('.credits .copyright a:hover', 'color', 'accent_color'); ?>
 
 	           <?php self::rowling_generate_css('.nav-toggle', 'background-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.mobile-menu', 'background', 'accent_color'); ?>
 				
 				
 	      </style> 
