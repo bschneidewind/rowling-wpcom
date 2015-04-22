@@ -8,7 +8,7 @@
 	<footer class="site-footer">
 		<div class="credits">
 			<div class="section-inner">
-				<a href="#" class="to-the-top" title="<?php esc_attr_e( 'To the top', 'rowling' ); ?>"><div class="fa fw fa-arrow-up"></div></a>
+				<a href="#site-header" class="to-the-top" title="<?php esc_attr_e( 'To the top', 'rowling' ); ?>"><div class="fa fw fa-arrow-up"></div></a>
 				
 				<div class="copyright">
 					<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'rowling' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'rowling' ), 'WordPress' ); ?></a>

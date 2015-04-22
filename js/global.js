@@ -40,12 +40,18 @@ jQuery(document).ready(function($) {
 		nextText: "",
 		smoothHeight: true
 	});
-	// smooth scroll to the top	
-	$('.to-the-top').click(function() {
-		$("html, body").animate({
-			scrollTop: 0
-		}, 500);
-		return false;
+	// smooth scroll for any anchor link on same page
+	$('a[href*=#]:not([href=#])').click(function() {
+		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+			var target = $(this.hash);
+			target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+			if (target.length) {
+				$('html,body').animate({
+					scrollTop: target.offset().top
+				}, 1000);
+				return false;
+			}
+		}
 	});
 	// resize videos after container
 	var vidSelector = ".post iframe, .post object, .post video";
