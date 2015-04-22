@@ -96,8 +96,8 @@ class rowling_recent_comments extends WP_Widget {
 	function form($instance) {
 		
 		// Set defaults
-		if(!isset($instance["widget_title"])) { $instance["widget_title"] = ''; }
-		if(!isset($instance["number_of_comments"])) { $instance["number_of_comments"] = '5'; }
+		if(!isset($instance['widget_title'])) { $instance['widget_title'] = ''; }
+		if(!isset($instance['number_of_comments'])) { $instance['number_of_comments'] = '5'; }
 	
 		// Get the options into variables, escaping html characters on the way
 		$widget_title = esc_attr($instance['widget_title']);
@@ -118,4 +118,4 @@ class rowling_recent_comments extends WP_Widget {
 		<?php
 	}
 }
-register_widget('rowling_recent_comments'); ?>
+register_widget('rowling_recent_comments');

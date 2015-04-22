@@ -20,49 +20,51 @@
 
 <body <?php body_class(); ?>>
 
-	<div class="top-nav">
-		<div class="section-inner clearfix">
-			<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu', 'menu_class' => 'secondary-menu', 'container' => 'false' ) ); ?>
-
-			<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' => '<span class="screen-reader-text">', 'link_after'  => '</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s<li><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li></ul>' ) ); ?>
-
-		</div> <!-- /section-inner -->
-	</div> <!-- /top-nav -->
-
-	<div class="search-container">
-		<div class="section-inner">
-			<?php get_search_form(); ?>
-		</div> <!-- /section-inner -->
-	</div> <!-- /search-container -->
-
-	<div class="header-wrapper">
-		<div class="header">
-			<div class="section-inner">
-
-				<?php if ( get_theme_mod( 'rowling_logo' ) ) : ?>
-
-				<a class="blog-logo" href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>' rel='home'>
-					<img src='<?php echo esc_url( get_theme_mod( 'rowling_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>'>
-				</a>
-
-				<?php else : ?>
-
-				<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'title' ) . ' &mdash; ' . get_bloginfo( 'description' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'title' ) ); ?></a></h2>
-				<h4 class="blog-description"><?php bloginfo( 'description' ); ?></h4>
-
-				<?php endif; ?>
-
-				<div class="nav-toggle">
-					<div class="bars">
-						<div class="bar"></div>
-						<div class="bar"></div>
-						<div class="bar"></div>
-					</div>
-				</div> <!-- /nav-toggle -->
-
+	<header id="site-header">
+		<div class="top-nav">
+			<div class="section-inner clearfix">
+				<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu', 'menu_class' => 'secondary-menu', 'container' => 'false' ) ); ?>
+	
+				<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' => '<span class="screen-reader-text">', 'link_after'  => '</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s<li><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li></ul>' ) ); ?>
+	
 			</div> <!-- /section-inner -->
-		</div> <!-- /header -->
-
-		<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'primary-menu clearfix', 'container' => 'div', 'container_class' => 'navigation' ) ); ?>
-
-	</div> <!-- /header-wrapper -->
+		</div> <!-- /top-nav -->
+	
+		<div class="search-container">
+			<div class="section-inner">
+				<?php get_search_form(); ?>
+			</div> <!-- /section-inner -->
+		</div> <!-- /search-container -->
+	
+		<div class="header-wrapper">
+			<div class="header">
+				<div class="section-inner">
+	
+					<?php if ( get_theme_mod( 'rowling_logo' ) ) : ?>
+	
+					<a class="blog-logo" href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>' rel='home'>
+						<img src='<?php echo esc_url( get_theme_mod( 'rowling_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>'>
+					</a>
+	
+					<?php else : ?>
+	
+					<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'title' ) . ' &mdash; ' . get_bloginfo( 'description' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'title' ) ); ?></a></h2>
+					<h4 class="blog-description"><?php bloginfo( 'description' ); ?></h4>
+	
+					<?php endif; ?>
+	
+					<div class="nav-toggle">
+						<div class="bars">
+							<div class="bar"></div>
+							<div class="bar"></div>
+							<div class="bar"></div>
+						</div>
+					</div> <!-- /nav-toggle -->
+	
+				</div> <!-- /section-inner -->
+			</div> <!-- /header -->
+	
+			<?php wp_nav_menu( array( 'theme_location' => 'primary', 'menu_id' => 'primary-menu', 'menu_class' => 'primary-menu clearfix', 'container' => 'div', 'container_class' => 'navigation' ) ); ?>
+	
+		</div> <!-- /header-wrapper -->
+	</header>

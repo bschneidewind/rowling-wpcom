@@ -49,4 +49,4 @@
 	
 </div> <!-- /wrapper.section-inner -->
 	              	        
-<?php get_footer(); ?>
+<?php get_footer();

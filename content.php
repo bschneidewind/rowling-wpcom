@@ -44,7 +44,7 @@
 			<a href="<?php the_permalink(); ?>"><?php the_time( get_option( 'date_format' ) ); ?></a> 
 			<?php 
 				if ( comments_open() ) {
-					echo " &mdash; ";
+					echo ' &mdash; ';
 					comments_popup_link( '0 Comments', '1 Comment', '% Comments' ); 
 				} 
 			?>

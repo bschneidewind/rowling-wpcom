@@ -19,7 +19,7 @@
 				
 				<?php $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 				
-				if ( "1" < $wp_query->max_num_pages ) : ?>
+				if ( '1' < $wp_query->max_num_pages ) : ?>
 				
 					<p><?php esc_html_e( 'Page', 'rowling' ); echo ' ' . $paged . '<span class="sep">/</span>' . $wp_query->max_num_pages; ?></p>
 				
@@ -79,4 +79,4 @@
 
 </div> <!-- /wrapper.section-inner -->
 		
-<?php get_footer(); ?>
+<?php get_footer();

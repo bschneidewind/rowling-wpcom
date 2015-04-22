@@ -58,7 +58,7 @@ function rowling_load_javascript_files() {
 		wp_enqueue_script( 'rowling_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );	
 		wp_enqueue_script( 'rowling_doubletap', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
 		wp_enqueue_script( 'rowling_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );
-		if ( is_singular() ) wp_enqueue_script( "comment-reply" );
+		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
 	}
 }
 
@@ -103,9 +103,9 @@ function rowling_sidebar_reg() {
 
 
 // Add theme widgets
-require_once (get_template_directory() . "/widgets/flickr-widget.php");  
-require_once (get_template_directory() . "/widgets/recent-comments.php");
-require_once (get_template_directory() . "/widgets/recent-posts.php");
+require_once (get_template_directory() . '/widgets/flickr-widget.php');  
+require_once (get_template_directory() . '/widgets/recent-comments.php');
+require_once (get_template_directory() . '/widgets/recent-posts.php');
 
 
 // Delist the default WordPress widgets replaced by custom theme widgets
@@ -688,5 +688,3 @@ add_action( 'wp_head' , array( 'rowling_Customize' , 'rowling_header_output' ) )
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'rowling_Customize' , 'rowling_live_preview' ) );
-
-?>

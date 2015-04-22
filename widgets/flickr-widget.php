@@ -52,9 +52,9 @@ class rowling_flickr_widget extends WP_Widget {
 	function form($instance) {
 		
 		// Set defaults
-		if(!isset($instance["widget_title"])) { $instance["widget_title"] = ''; }
-		if(!isset($instance["id"])) { $instance["id"] = ''; }
-		if(!isset($instance["number"])) { $instance["number"] = ''; }
+		if(!isset($instance['widget_title'])) { $instance['widget_title'] = ''; }
+		if(!isset($instance['id'])) { $instance['id'] = ''; }
+		if(!isset($instance['number'])) { $instance['number'] = ''; }
 	
 		// Get the options into variables, escaping html characters on the way
 		$widget_title = esc_attr($instance['widget_title']);
@@ -82,4 +82,4 @@ class rowling_flickr_widget extends WP_Widget {
 		<?php
 	}
 }
-register_widget('rowling_flickr_widget'); ?>
+register_widget('rowling_flickr_widget');

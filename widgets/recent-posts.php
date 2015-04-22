@@ -125,4 +125,4 @@ class rowling_recent_posts extends WP_Widget {
 		<?php
 	}
 }
-register_widget('rowling_recent_posts'); ?>
+register_widget('rowling_recent_posts');
