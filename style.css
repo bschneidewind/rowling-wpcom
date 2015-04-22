@@ -86,6 +86,12 @@ input[type="search"]::-webkit-search-results-decoration {
   display: none;
 }
 
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 
 /* -------------------------------------------------------------------------------- */
 /*	1.	Document setup
