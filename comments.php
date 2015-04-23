@@ -1,4 +1,3 @@
-
 <?php
 /**
  * The template for displaying comments.
@@ -17,8 +16,8 @@ if ( post_password_required() ) {
 	return;
 }
 
-if ( have_comments() ) :
-?>
+if ( have_comments() ) : ?>
+
 	<div class="comments-container">
 		<div class="comments-inner">
 			<a name="comments"></a>
