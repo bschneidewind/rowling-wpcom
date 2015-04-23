@@ -663,7 +663,7 @@ class rowling_Customize {
       );
    }
 
-   public static function rowling_generate_css( $selector, $style, $mod_name, $prefix='', $postfix='', $echo=true ) {
+   public static function rowling_generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
       $return = '';
       $mod = get_theme_mod($mod_name);
       if ( ! empty( $mod ) ) {
