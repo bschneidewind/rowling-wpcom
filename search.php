@@ -7,7 +7,7 @@
  
  get_header(); ?>
 
-<div class="wrapper section-inner">
+<div class="wrapper section-inner clearfix">
 
 	<div class="content">
 		

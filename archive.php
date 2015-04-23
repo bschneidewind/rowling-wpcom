@@ -7,7 +7,7 @@
  
 get_header(); ?>
 
-<div class="wrapper section-inner">
+<div class="wrapper section-inner clearfix">
 	<div class="content">
 		<div class="page-title">
 			<?php the_archive_title( '<h4>', '</h4>' ); ?>

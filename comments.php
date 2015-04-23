@@ -1,50 +1,45 @@
+
 <?php
 /**
- * The template for displaying comments
+ * The template for displaying comments.
+ *
+ * The area of the page that contains both current comments
+ * and the comment form.
  *
  * @package Rowling
- */ 
- 
- if ( post_password_required() ) return; ?>
+ */
+/*
+ * If the current post is protected by a password and
+ * the visitor has not yet entered the password we will
+ * return early without loading the comments.
+ */
+if ( post_password_required() ) {
+	return;
+}
 
-<?php if ( have_comments() ) : ?>
-
+if ( have_comments() ) :
+?>
 	<div class="comments-container">
-	
 		<div class="comments-inner">
-		
 			<a name="comments"></a>
-			
-			<div class="comments-title-container">
-			
+			<div class="comments-title-container clearfix">
 				<h3 class="comments-title">
-				
-					<span class="fa fw fa-comment"></span><?php echo count($wp_query->comments_by_type['comment']) . ' ';
-					echo _n( 'Comment' , 'Comments' , count($wp_query->comments_by_type['comment']), 'rowling' ); ?>
-					
+					<?php printf( _nx( '1 comment', '%1$s comments', get_comments_number(), 'rowling' ), number_format_i18n( get_comments_number() ) ); ?>
 				</h3>
 				
 				<?php if ( comments_open() ) : ?>
-				
-					<p class="comments-title-link">
-						
-						<a href="#respond"><?php esc_html_e('Add Comment','rowling'); ?> &rarr;</a>
-						
-					</p>
-				
+				<p class="comments-title-link">
+					<a href="#respond" title="<?php esc_attr_e( 'Add comment', 'rowling' ); ?>" class="comment-respond"><?php esc_html_e( 'Add Comment &rarr;', 'rowling' ); ?></a>
+				</p>
 				<?php endif; ?>
-				
-				<div class="clear"></div>
-			
 			</div>
 		
 			<div class="comments">
-		
 				<ol class="commentlist">
 				    <?php wp_list_comments( array( 'type' => 'comment', 'callback' => 'rowling_comment' ) ); ?>
 				</ol>
 				
-				<?php if (!empty($comments_by_type['pings'])) : ?>
+				<?php if ( !empty( $comments_by_type['pings'] ) ) : ?>
 				
 					<div class="pingbacks">
 										
@@ -146,5 +141,3 @@ if ( comments_open() ) { echo '<div class="respond-container">'; }
 comment_form($comments_args);
 
 if ( comments_open() ) { echo '</div> <!-- /respond-container -->'; }
-
-?>

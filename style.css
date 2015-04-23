@@ -199,7 +199,7 @@ body a,
 
 .wrapper { position: relative; }
 
-.wrapper:after {
+.wrapper:before {
 	content: "";
 	display: block;
 	width: 28.5%;
@@ -2533,7 +2533,7 @@ div.comment { margin-top: 25px; }
 	
 	.wrapper.section-inner { max-width: 100%; }
 	
-	.wrapper:after { content: none; }
+	.wrapper:before { content: none; }
 	
 	.content { 
 		float: none;

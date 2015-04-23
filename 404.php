@@ -7,7 +7,7 @@
  
 get_header(); ?>
  
-<div class="wrapper section-inner">
+<div class="wrapper section-inner clearfix">
 	<div class="content">
 		<div class="post single single-post">
 			<p class="post-categories"><?php esc_html_e( 'Error 404', 'rowling' ); ?></p>
