@@ -17,17 +17,20 @@
 			
 			echo '<div class="widgets">';
 			
-			the_widget( 'WP_Widget_Search', 
-				array(
-					
-				),
-				array(
-					'before_title' => '<h3 class="widget-title">',
-					'after_title' => '</h3>',
-					'before_widget' => '<div class="widget widget_search"><div class="widget-content">',
-					'after_widget' => '</div><div class="clear"></div></div>'
-				) 
-			);
+			if ( !is_404() ) {
+				// hides the search widget on 404 pages (search is present in content area)
+				the_widget( 'WP_Widget_Search', 
+					array(
+						
+					),
+					array(
+						'before_title' => '<h3 class="widget-title">',
+						'after_title' => '</h3>',
+						'before_widget' => '<div class="widget widget_search"><div class="widget-content">',
+						'after_widget' => '</div><div class="clear"></div></div>'
+					) 
+				);
+			}
 			
 			the_widget( 'rowling_recent_posts', 
 				array(
