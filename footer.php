@@ -13,11 +13,11 @@
 				<div class="copyright">
 					<a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'rowling' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'rowling' ), 'WordPress' ); ?></a>
 				</div> <!-- /copyright -->
-				
+
 				<div class="attribution">
 					<?php printf( __( 'Theme: %1$s by %2$s.', 'rowling' ), 'Rowling', '<a href="http://www.andersnoren.se" rel="designer">Anders Nor&eacute;n</a>' ); ?>
 				</div> <!-- /attribution -->
-				
+
 			</div>  <!-- /section inner -->
 		</div> <!-- /credits -->
 	</footer>
