@@ -1,8 +1,8 @@
 <?php 
 
-class rowling_recent_comments extends WP_Widget {
+class Rowling_Recent_Comments extends WP_Widget {
 
-	function rowling_recent_comments() {
+	function Rowling_Recent_Comments() {
 		parent::WP_Widget(false, $name = __('Recent Comments','rowling'), array('description' => __('Displays recent comments with user avatars.', 'rowling') ));
 	}
 	
@@ -118,4 +118,4 @@ class rowling_recent_comments extends WP_Widget {
 		<?php
 	}
 }
-register_widget('rowling_recent_comments');
+register_widget('Rowling_Recent_Comments');

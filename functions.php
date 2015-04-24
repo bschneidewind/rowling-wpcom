@@ -507,7 +507,7 @@ endif;
 
 
 // rowling theme options
-class rowling_Customize {
+class Rowling_Customize {
 
    public static function rowling_register ( $wp_customize ) {
    
@@ -681,10 +681,10 @@ class rowling_Customize {
 }
 
 // Setup the Theme Customizer settings and controls...
-add_action( 'customize_register' , array( 'rowling_Customize' , 'rowling_register' ) );
+add_action( 'customize_register' , array( 'Rowling_Customize' , 'rowling_register' ) );
 
 // Output custom CSS to live site
-add_action( 'wp_head' , array( 'rowling_Customize' , 'rowling_header_output' ) );
+add_action( 'wp_head' , array( 'Rowling_Customize' , 'rowling_header_output' ) );
 
 // Enqueue live preview javascript in Theme Customizer admin screen
-add_action( 'customize_preview_init' , array( 'rowling_Customize' , 'rowling_live_preview' ) );
+add_action( 'customize_preview_init' , array( 'Rowling_Customize' , 'rowling_live_preview' ) );

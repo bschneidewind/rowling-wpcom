@@ -1,8 +1,8 @@
 <?php 
 
-class rowling_flickr_widget extends WP_Widget {
+class Rowling_Flickr_Widget extends WP_Widget {
 
-	function rowling_flickr_widget() {
+	function Rowling_Flickr_Widget() {
 		parent::WP_Widget(false, $name = __('Flickr Widget','rowling'), array('description' => __('Displays your latest Flickr photos.', 'rowling') ));	
 	}
 	
@@ -82,4 +82,4 @@ class rowling_flickr_widget extends WP_Widget {
 		<?php
 	}
 }
-register_widget('rowling_flickr_widget');
+register_widget('Rowling_Flickr_Widget');
