@@ -4,13 +4,13 @@
 add_action( 'after_setup_theme', 'rowling_setup' );
 
 function rowling_setup() {
-	
+
 	// Automatic feed
 	add_theme_support( 'automatic-feed-links' );
-	
+
 	// Title tag
 	add_theme_support( 'title-tag' );
-	
+
 	// Title tag backwards compatibility
 	if ( ! function_exists( '_wp_render_title_tag' ) ) {
 		function rowling_theme_slug_render_title() { ?>
@@ -18,35 +18,34 @@ function rowling_setup() {
 		<?php 
 		}
 		add_action( 'wp_head', 'rowling_theme_slug_render_title' );
-	} 
-	
+	}
+
 	// Add post format support
 	add_theme_support( 'post-formats', array( 'gallery' ) );
-	
+
 	// Set content-width
 	global $content_width;
-	if ( ! isset( $content_width ) ) $content_width = 616;
-	
+	if ( ! isset( $content_width ) ) $content_width = 816;
+
 	// Post thumbnails
 	add_theme_support( 'post-thumbnails' );
 	set_post_thumbnail_size ( 88, 88, true );
-	
+
 	add_image_size( 'post-image', 816, 9999 );
 	add_image_size( 'post-image-thumb', 400, 200, true );
-		
+
 	// Add nav menus
-	register_nav_menu( 'primary', __('Primary Menu','rowling') );
-	register_nav_menu( 'secondary', __('Secondary Menu','rowling') );
-	register_nav_menu( 'social', __('Social Menu','rowling') );
-	
+	register_nav_menu( 'primary', __( 'Primary Menu', 'rowling' ) );
+	register_nav_menu( 'secondary', __( 'Secondary Menu', 'rowling' ) );
+	register_nav_menu( 'social', __( 'Social Menu', 'rowling' ) );
+
 	// Make the theme translation ready
-	load_theme_textdomain('rowling', get_template_directory() . '/languages');
-	
+	load_theme_textdomain( 'rowling', get_template_directory() . '/languages' );
+
 	$locale = get_locale();
 	$locale_file = get_template_directory() . "/languages/$locale.php";
-	if ( is_readable($locale_file) )
-	  require_once($locale_file);
-	
+	if ( is_readable( $locale_file ) )
+	  require_once( $locale_file );
 }
 
 
