@@ -273,18 +273,6 @@ function rowling_modify_read_more_link() {
 	return '<p><a class="more-link" href="' . get_permalink() . '">' . __( 'Read More', 'rowling' ) . '</a></p>';
 }
 
-// Add body class if is_single and has_featured_image
-add_filter( 'body_class', 'rowling_is_single_featured_image' );
-
-function rowling_is_single_featured_image( $classes ) {
-
-    if ( is_single() && has_post_thumbnail() ) {
-        $classes[] = 'has-featured-image';
-    }
-
-    return $classes;
-}
-
 // Get comment excerpt length
 function rowling_get_comment_excerpt($comment_ID = 0, $num_words = 20) {
 	$comment = get_comment( $comment_ID );
