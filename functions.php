@@ -688,3 +688,13 @@ add_action( 'wp_head' , array( 'Rowling_Customize' , 'rowling_header_output' ) )
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'Rowling_Customize' , 'rowling_live_preview' ) );
+
+/**
+* Load WordPress.com items
+*/
+require get_template_directory() . '/inc/wpcom.php';
+
+/**
+* Load Jetpack items
+*/
+require get_template_directory() . '/inc/jetpack.php';
