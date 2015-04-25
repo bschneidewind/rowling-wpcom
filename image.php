@@ -3,7 +3,10 @@
  * The template for displaying image attachments
  *
  * @package Rowling
+ * $content_width is defined in functions.php
+ *
  */
+ 
 
 get_header(); ?>
 

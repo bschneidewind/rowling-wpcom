@@ -1,6 +1,4 @@
-<?php 
-
-add_theme_support( 'print-style' );
+<?php
 
 if ( ! isset( $themecolors ) ) {
     $themecolors = array(

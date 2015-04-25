@@ -103,7 +103,7 @@ function rowling_sidebar_reg() {
 
 // Add theme widgets
 require_once (get_template_directory() . '/widgets/flickr-widget.php');  
-require_once (get_template_directory() . '/widgets/recent-comments.php');
+
 require_once (get_template_directory() . '/widgets/recent-posts.php');
 
 
@@ -111,7 +111,6 @@ require_once (get_template_directory() . '/widgets/recent-posts.php');
 add_action('widgets_init', 'rowling_unregister_default_widgets', 11);
  
 function rowling_unregister_default_widgets() {
-	unregister_widget('WP_Widget_Recent_Comments');
 	unregister_widget('WP_Widget_Recent_Posts');
 }
 
@@ -396,9 +395,9 @@ function rowling_flexslider($size) {
 					<li>
 						<?php echo $attimg; ?>
 						<?php if ( !empty($image->post_excerpt) && is_single()) : ?>
-						
-							<p class="post-image-caption"><span class="fa fw fa-camera"></span><?php esc_html_e( $image->post_excerpt ); ?></p>
 							
+							<?php printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $image->post_excerpt ) ); ?>
+													
 						<?php endif; ?>
 					</li>
 					
