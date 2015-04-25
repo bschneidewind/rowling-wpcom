@@ -33,125 +33,114 @@ function rowling_setup() {
 	// Make the theme translation ready
 	load_theme_textdomain( 'rowling', get_template_directory() . '/languages' );
 
-	$locale = get_locale();
-	$locale_file = get_template_directory() . "/languages/$locale.php";
-	if ( is_readable( $locale_file ) )
-	  require_once( $locale_file );
 }
 
-
-// Register and enqueue Javascript files
+// Register and enqueue scripts
 add_action( 'wp_enqueue_scripts', 'rowling_load_javascript_files' );
 
 function rowling_load_javascript_files() {
 	if ( !is_admin() ) {	
-		wp_enqueue_script( 'rowling_flexslider', get_template_directory_uri().'/js/flexslider.js', array('jquery'), '', true );	
-		wp_enqueue_script( 'rowling_doubletap', get_template_directory_uri().'/js/doubletaptogo.js', array('jquery'), '', true );
-		wp_enqueue_script( 'rowling_global', get_template_directory_uri().'/js/global.js', array('jquery'), '', true );
-		if ( is_singular() ) wp_enqueue_script( 'comment-reply' );
+		wp_register_script( 'rowling_doubletap', get_template_directory_uri() . '/assets/js/doubletaptogo.js', array( 'jquery' ), '', true );
+		wp_register_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/flexslider.js', array( 'jquery' ), '', true );	
+		wp_register_script( 'rowling_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '', true );
+
+		wp_enqueue_script( 'rowling_doubletap' );
+		wp_enqueue_script( 'rowling_flexslider' );	
+		wp_enqueue_script( 'rowling_global' );
+
+		if ( is_singular() ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
 	}
 }
-
 
 // Register and enqueue styles
 add_action('wp_print_styles', 'rowling_load_style');
 
 function rowling_load_style() {
 	if ( !is_admin() ) {
-	    wp_enqueue_style( 'rowling_googleFonts', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
-	    wp_enqueue_style( 'rowling_fontawesome', get_template_directory_uri() . '/fa/css/font-awesome.css' );
-	    wp_enqueue_style( 'rowling_style', get_stylesheet_uri() );
+	    wp_register_style( 'rowling_google_lato', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
+	    wp_register_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
+	    wp_register_style( 'rowling_style', get_stylesheet_uri() );
+	    
+	    wp_enqueue_style( 'rowling_google_lato' );
+	    wp_enqueue_style( 'rowling_fontawesome' );
+	    wp_enqueue_style( 'rowling_style' );
 	}
 }
-
 
 // Add editor styles
 add_action( 'init', 'rowling_add_editor_styles' );
 
 function rowling_add_editor_styles() {
     add_editor_style( 'rowling-editor-styles.css' );
-    $font_url = '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic';
-    add_editor_style( str_replace( ',', '%2C', $font_url ) );
+    $font_url = str_replace( ',', '%2C', '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic' );
+    add_editor_style( $font_url );
 }
 
-
-// Add footer widget areas
+// Add sidebar widget areas
 add_action( 'widgets_init', 'rowling_sidebar_reg' ); 
 
 function rowling_sidebar_reg() {
-	register_sidebar(array(
+	register_sidebar( array(
 	  'name' => __( 'Sidebar', 'rowling' ),
 	  'id' => 'sidebar',
 	  'description' => __( 'Widgets in this area will be shown in the sidebar.', 'rowling' ),
 	  'before_title' => '<h3 class="widget-title">',
 	  'after_title' => '</h3>',
-	  'before_widget' => '<div class="widget %2$s"><div class="widget-content">',
-	  'after_widget' => '</div><div class="clear"></div></div>'
+	  'before_widget' => '<div class="widget %2$s"><div class="widget-content clearfix">',
+	  'after_widget' => '</div></div>'
 	));
 }
 
-
-
-// Add theme widgets
-require_once (get_template_directory() . '/widgets/recent-posts.php');
-
-// Delist the default WordPress widgets replaced by custom theme widgets
-add_action('widgets_init', 'rowling_unregister_default_widgets', 11);
+// Delist the default WordPress recent posts widget
+add_action( 'widgets_init', 'rowling_unregister_default_widgets', 11 );
  
 function rowling_unregister_default_widgets() {
 	unregister_widget('WP_Widget_Recent_Posts');
 }
 
-
-// Check whether the browser supports JavaScript
-add_action( 'wp_head', 'rowling_html_js_class', 1 );
-
-function rowling_html_js_class () {
-    echo '<script>document.documentElement.className = document.documentElement.className.replace("no-js","js");</script>'. "\n";
-}
+// Add theme widgets
+require_once ( get_template_directory() . '/widgets/recent-posts.php' );
 
 
 // Related posts function
-function rowling_related_posts($number_of_posts) { ?>
+function rowling_related_posts( $number_of_posts ) { ?>
 	
 	<div class="related-posts">
-		
-		<p class="related-posts-title"><?php esc_html_e('Read Next','rowling'); ?> &rarr;</p>
-		
+		<p class="related-posts-title"><?php esc_html_e('Read Next &rarr;','rowling'); ?></p>
 		<div class="row">
-						
+			
 			<?php // Check for posts in the same category
-					
 				global $post;
 				$cat_ID = array();
 				$categories = get_the_category();
-				foreach($categories as $category) {
-					array_push($cat_ID,$category->cat_ID);
+				foreach( $categories as $category ) {
+					array_push( $cat_ID,$category->cat_ID );
 				}
-				
+
 				$related_posts = new WP_Query( apply_filters(
 				'rowling_related_posts_args', array(
 				        'posts_per_page'		=>	$number_of_posts,
 				        'post_status'			=>	'publish',
 				        'category__in'			=>	$cat_ID,
-				        'post__not_in'			=>	array($post->ID),
+				        'post__not_in'			=>	array( $post->ID ),
 				        'meta_key'				=>	'_thumbnail_id',
 				        'ignore_sticky_posts'	=>	true
 				) ) );
+
+				if ( $related_posts->have_posts() ) : while ( $related_posts->have_posts() ) : $related_posts->the_post();
 				
-				if ($related_posts->have_posts()) :
-					
-					while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
-					
-					<?php global $post; ?>
-				
+					global $post; ?>
+
 					<a class="related-post" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-						
+
 						<?php if ( has_post_thumbnail() ) : ?>
-							
+
 							<?php the_post_thumbnail('post-image-thumb') ?>
-							
+
 						<?php endif; ?>
+
 							<p class="category">
 							<?php
 								$category = get_the_category();
@@ -160,41 +149,36 @@ function rowling_related_posts($number_of_posts) { ?>
 								endif;
 							?>
 							</p>
-				
-						<h3 class="title"><?php the_title(); ?></h3>
+							
+						<?php the_title( '<h3 class="title">', '</h3>' ); ?>
 							
 					</a>
 				
-				<?php endwhile; ?>
-					
-			<?php else: // If there are no other posts in the post categories, get random posts ?>
-			
+				<?php endwhile; else: // If there are no other posts in the post categories, get random posts ?>
+
 				<?php
-						
 					$related_posts = new WP_Query( apply_filters(
 					'rowling_related_posts_args', array(
 					        'posts_per_page'		=>	$number_of_posts,
 					        'post_status'			=>	'publish',
 					        'orderby'				=>	'rand',
-					        'post__not_in'			=>	array($post->ID),
+					        'post__not_in'			=>	array( $post->ID ),
 							'meta_key'				=>	'_thumbnail_id',
 					        'ignore_sticky_posts'	=>	true
 					) ) );
 					
-					if ($related_posts->have_posts()) :
-						
-						while ( $related_posts->have_posts() ) : $related_posts->the_post(); ?>
-						
-						<?php global $post; ?>
+					if ( $related_posts->have_posts() ) : while ( $related_posts->have_posts() ) : $related_posts->the_post();
 					
+						global $post; ?>
+
 						<a class="related-post" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-							
+
 							<?php if ( has_post_thumbnail() ) : ?>
-								
+
 								<?php the_post_thumbnail('post-image-thumb') ?>
-								
+
 							<?php endif; ?>
-							
+
 							<p class="category">
 								<?php
 									$category = get_the_category();
@@ -203,74 +187,70 @@ function rowling_related_posts($number_of_posts) { ?>
 									endif;
 								?>
 							</p>
-					
-							<h3 class="title"><?php the_title(); ?></h3>
-								
+
+							<?php the_title( '<h3 class="title">', '</h3>' ); ?>
+
 						</a>
-					
-					<?php endwhile; ?>
-					
-				<?php endif; ?>
-		
+
+					<?php endwhile; endif; ?>
+
 			<?php endif; ?>
-		
+
 		</div> <!-- /row -->
-		
+
 		<?php wp_reset_query(); ?>
 
 	</div> <!-- /related-posts -->
-	
+
 	<?php
-}
-
-
+} // end of function rowling_related_posts
 
 // Archive navigation function
 function rowling_archive_navigation() {
-	
+
 	global $wp_query;
-	
+
 	if ( $wp_query->max_num_pages > 1 ) : ?>
-				
-		<div class="archive-nav">
-				
+
+		<div class="archive-nav clearfix">
+
 			<?php 
 				if ( get_previous_posts_link() ) echo '<li class="archive-nav-newer">' . get_previous_posts_link( '&larr; ' . __('Previous', 'rowling')) . '</li>';
 				$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
 				$max   = intval( $wp_query->max_num_pages );
-			
+
 				/**	Add current page to the array */
 				if ( $paged >= 1 )
 					$links[] = $paged;
-			
+
 				/**	Add the pages around the current page to the array */
 				if ( $paged >= 3 ) {
 					$links[] = $paged - 1;
 					$links[] = $paged - 2;
 				}
-			
+
 				if ( ( $paged + 2 ) <= $max ) {
 					$links[] = $paged + 2;
 					$links[] = $paged + 1;
 				}
-			
+
 				/**	Link to first page, plus ellipses if necessary */
 				if ( ! in_array( 1, $links ) ) {
 					$class = 1 == $paged ? ' active' : '';
-			
+
 					printf( '<li class="number%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( 1 ) ), '1' );
-			
+
 					if ( ! in_array( 2, $links ) )
 						echo '<li>...</li>';
 				}
-			
+
 				/**	Link to current page, plus 2 pages in either direction if necessary */
 				sort( $links );
 				foreach ( (array) $links as $link ) {
 					$class = $paged == $link ? ' active' : '';
 					printf( '<li class="number%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $link ) ), $link );
 				}
-			
+
 				/**	Link to last page, plus ellipses if necessary */
 				if ( ! in_array( $max, $links ) ) {
 					if ( ! in_array( $max - 1, $links ) )
@@ -279,38 +259,31 @@ function rowling_archive_navigation() {
 					$class = $paged == $max ? ' active' : '';
 					printf( '<li class="number%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
 				}
-							
-				if ( get_next_posts_link() ) echo '<li class="archive-nav-older">' . get_next_posts_link( __('Next', 'rowling') . ' &rarr;') . '</li>'; 
-			?>
-			
-			<div class="clear"></div>
-						
-		</div> <!-- /archive-nav -->
-						
-	<?php endif;
-}
 
+				if ( get_next_posts_link() ) echo '<li class="archive-nav-older">' . get_next_posts_link( __('Next', 'rowling') . ' &rarr;') . '</li>'; ?>
+
+		</div> <!-- /archive-nav -->
+	<?php endif;
+}  // end of function rowling_archive_navigation
 
 // Custom read more link text
 add_filter( 'the_content_more_link', 'rowling_modify_read_more_link' );
 
 function rowling_modify_read_more_link() {
-	return '<p><a class="more-link" href="' . get_permalink() . '">' . __('Read More','rowling') . '</a></p>';
+	return '<p><a class="more-link" href="' . get_permalink() . '">' . __( 'Read More', 'rowling' ) . '</a></p>';
 }
-
 
 // Add body class if is_single and has_featured_image
-add_filter('body_class','rowling_is_single_featured_image');
- 
-function rowling_is_single_featured_image( $classes ){
- 
-    if ( is_single() && has_post_thumbnail() ){
+add_filter( 'body_class', 'rowling_is_single_featured_image' );
+
+function rowling_is_single_featured_image( $classes ) {
+
+    if ( is_single() && has_post_thumbnail() ) {
         $classes[] = 'has-featured-image';
     }
-    
+
     return $classes;
 }
-
 
 // Get comment excerpt length
 function rowling_get_comment_excerpt($comment_ID = 0, $num_words = 20) {
@@ -645,7 +618,7 @@ class Rowling_Customize {
    public static function rowling_live_preview() {
       wp_enqueue_script( 
            'rowling-themecustomizer', // Give the script a unique ID
-           get_template_directory_uri() . '/js/theme-customizer.js', // Define the path to the JS file
+           get_template_directory_uri() . 'assets/js/theme-customizer.js', // Define the path to the JS file
            array(  'jquery', 'customize-preview' ), // Define dependencies
            '', // Define a version (optional) 
            true // Specify whether to put in footer (leave this true)
