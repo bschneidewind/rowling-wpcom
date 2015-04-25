@@ -11,15 +11,6 @@ function rowling_setup() {
 	// Title tag
 	add_theme_support( 'title-tag' );
 
-	// Title tag backwards compatibility
-	if ( ! function_exists( '_wp_render_title_tag' ) ) {
-		function rowling_theme_slug_render_title() { ?>
-			<title><?php wp_title('|', true, 'right'); ?></title>
-		<?php 
-		}
-		add_action( 'wp_head', 'rowling_theme_slug_render_title' );
-	}
-
 	// Add post format support
 	add_theme_support( 'post-formats', array( 'gallery' ) );
 
