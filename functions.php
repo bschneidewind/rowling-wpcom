@@ -398,7 +398,7 @@ function rowling_flexslider($size) {
 						<?php echo $attimg; ?>
 						<?php if ( !empty($image->post_excerpt) && is_single()) : ?>
 						
-							<p class="post-image-caption"><span class="fa fw fa-camera"></span><?php echo $image->post_excerpt; ?></p>
+							<p class="post-image-caption"><span class="fa fw fa-camera"></span><?php esc_html_e( $image->post_excerpt ); ?></p>
 							
 						<?php endif; ?>
 					</li>
@@ -673,7 +673,7 @@ class Rowling_Customize {
             $prefix.$mod.$postfix
          );
          if ( $echo ) {
-            echo $return;
+            esc_html( $return );
          }
       }
       return $return;

@@ -53,20 +53,20 @@
 				<?php elseif ( has_post_thumbnail() ) : ?>
 		
 					<div class="post-image">
-					
-						<a title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>">	
-							
-							<?php the_post_thumbnail( 'post-image' ); ?>
-							
-						</a>
-						
-						<?php if ( !empty( get_post( get_post_thumbnail_id() )->post_excerpt ) ) : ?>
-						
-							<p class="post-image-caption"><span class="fa fw fa-camera"></span><?php echo get_post( get_post_thumbnail_id() )->post_excerpt; ?></p>
-														
-						<?php endif; ?>
-						
-					</div> <!-- /post-image -->
+				<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image' ) ); ?>
+
+				<?php if ( $id = get_post_thumbnail_id() ) {
+					$post = get_post( $id );
+					$caption = $post->post_excerpt;
+				
+					// escape the caption
+					$caption = array_map( 'esc_html', $caption );
+				
+					if ( ! empty ( $caption ) )
+						echo '<p class="post-image-caption"><span class="fa fw fa-camera"></span>' . $caption . '</p>';
+				} ?>
+
+			</div> <!-- /post-image -->
 						
 				<?php endif; ?>
 				

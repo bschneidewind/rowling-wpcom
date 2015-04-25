@@ -17,12 +17,12 @@ class Rowling_Recent_Comments extends WP_Widget {
 		$widget_title = esc_attr(apply_filters('widget_title', $instance['widget_title']));
 		$number_of_comments = esc_attr($instance['number_of_comments']);
 		
-		echo $before_widget;
+		esc_html( $before_widget );
 		
 		
 		if (!empty($widget_title)) {
 		
-			echo $before_title . $widget_title . $after_title;
+			esc_html( $before_title . $widget_title . $after_title );
 			
 		} ?>
 		
@@ -77,7 +77,7 @@ class Rowling_Recent_Comments extends WP_Widget {
 			
 			</ul>
 					
-		<?php echo $after_widget; 
+		<?php esc_html( $after_widget ); 
 	}
 	
 	
@@ -110,8 +110,8 @@ class Rowling_Recent_Comments extends WP_Widget {
 		</p>
 						
 		<p>
-			<label for="<?php echo $this->get_field_id('number_of_comments'); ?>"><?php esc_html_e('Number of comments to display', 'rowling'); ?>:
-			<input id="<?php echo $this->get_field_id('number_of_comments'); ?>" name="<?php echo $this->get_field_name('number_of_comments'); ?>" type="text" class="widefat" value="<?php echo esc_attr($number_of_comments); ?>" /></label>
+			<label for="<?php esc_attr( $this->get_field_id('number_of_comments') ); ?>"><?php esc_html_e('Number of comments to display', 'rowling'); ?>:
+			<input id="<?php esc_attr( $this->get_field_id('number_of_comments') ); ?>" name="<?php esc_attr( $this->get_field_name('number_of_comments') ); ?>" type="text" class="widefat" value="<?php echo esc_attr($number_of_comments); ?>" /></label>
 			<small>(<?php esc_html_e('Defaults to 5 if empty','rowling'); ?>)</small>
 		</p>
 				
