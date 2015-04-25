@@ -43,9 +43,8 @@ if ( have_comments() ) : ?>
 					<div class="pingbacks">
 										
 						<h3 class="pingbacks-title">
-						
-							<?php echo count($wp_query->comments_by_type['pings']) . ' ';
-							echo _n( 'Pingback', 'Pingbacks', count($wp_query->comments_by_type['pings']), 'rowling' ); ?>
+							
+							<?php printf( _nx( 'One Pingback', '%1$s Pingbacks', count( $wp_query->comments_by_type['pings'] ), 'pingbacks-title', 'rowling' ), number_format_i18n( count( $wp_query->comments_by_type['pings'] ) ) ); ?>
 						
 						</h3>
 					
