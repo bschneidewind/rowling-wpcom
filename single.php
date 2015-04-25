@@ -5,7 +5,7 @@
  * @package Rowling
  */
  
- get_header(); ?>
+get_header(); ?>
 
 <div class="wrapper section-inner clearfix">
 	
@@ -51,23 +51,14 @@
 					<?php rowling_flexslider( 'post-image' ); ?>
 				
 				<?php elseif ( has_post_thumbnail() ) : ?>
-		
-					<div class="post-image">
-				<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image' ) ); ?>
+				<div class="post-image">
+					<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image' ) ); ?>
+					<?php $get_description = get_post( get_post_thumbnail_id() )->post_excerpt;
+						if( !empty( $get_description ) ) {
+							printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
+						} ?>
 
-				<?php if ( $id = get_post_thumbnail_id() ) {
-					$post = get_post( $id );
-					$caption = $post->post_excerpt;
-				
-					// escape the caption
-					$caption = array_map( 'esc_html', $caption );
-				
-					if ( ! empty ( $caption ) )
-						echo '<p class="post-image-caption"><span class="fa fw fa-camera"></span>' . $caption . '</p>';
-				} ?>
-
-			</div> <!-- /post-image -->
-						
+				</div> <!-- /post-image -->
 				<?php endif; ?>
 				
 				<div class="clear"></div>

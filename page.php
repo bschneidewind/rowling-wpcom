@@ -1,9 +1,10 @@
 <?php
-	/**
-		* The default page template
-		*
-		* @package Rowling
-	*/
+/**
+ * The default page template
+ *
+ * @package Rowling
+ */
+
 get_header(); ?>
 
 	<div class="wrapper section-inner clearfix">
@@ -12,7 +13,7 @@ get_header(); ?>
 			<?php while ( have_posts() ) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class( 'post single single-post' ); ?>>
 				<div class="post-header">
-					<h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+					<?php the_title( '<h2 class="post-title">', '</h2>' ); ?>
 				</div> <!-- /post-header -->
 
 				<?php if ( has_post_thumbnail() ) : ?>
