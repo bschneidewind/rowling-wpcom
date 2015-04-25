@@ -102,10 +102,7 @@ function rowling_sidebar_reg() {
 
 
 // Add theme widgets
-require_once (get_template_directory() . '/widgets/flickr-widget.php');  
-
 require_once (get_template_directory() . '/widgets/recent-posts.php');
-
 
 // Delist the default WordPress widgets replaced by custom theme widgets
 add_action('widgets_init', 'rowling_unregister_default_widgets', 11);
@@ -164,13 +161,14 @@ function rowling_related_posts($number_of_posts) { ?>
 							<?php the_post_thumbnail('post-image-thumb') ?>
 							
 						<?php endif; ?>
-						
-						<p class="category">
-							<?php 
-								$category = get_the_category(); 
-								echo $category[0]->cat_name;
+							<p class="category">
+							<?php
+								$category = get_the_category();
+								if ( isset( $category[0]->cat_name ) ):
+									esc_attr( $category[0]->cat_name );
+								endif;
 							?>
-						</p>
+							</p>
 				
 						<h3 class="title"><?php the_title(); ?></h3>
 							
@@ -207,9 +205,11 @@ function rowling_related_posts($number_of_posts) { ?>
 							<?php endif; ?>
 							
 							<p class="category">
-								<?php 
-									$category = get_the_category(); 
-									echo $category[0]->cat_name;
+								<?php
+									$category = get_the_category();
+									if ( isset( $category[0]->cat_name ) ):
+										esc_attr( $category[0]->cat_name );
+									endif;
 								?>
 							</p>
 					
@@ -393,7 +393,7 @@ function rowling_flexslider($size) {
 					$attimg = wp_get_attachment_image($image->ID,$size); ?>
 					
 					<li>
-						<?php echo $attimg; ?>
+						<?php echo esc_url( $attimg ); ?>
 						<?php if ( !empty($image->post_excerpt) && is_single()) : ?>
 							
 							<?php printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $image->post_excerpt ) ); ?>
