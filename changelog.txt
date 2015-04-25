@@ -1,12 +1,13 @@
 *** Rowling changelog ***
 
-Version 1.04 (2015-04-07)
+Version 1.04 (2015-04-25)
 ------------------------- 
 - Properly attribute all template files
 - Added image.php
 - Added rtl.css
 - Escaped all content
 - Update spacing/formatting
+- Added .img-responsive class for responsive image handling
 
 
 Version 1.03 (2015-04-07)

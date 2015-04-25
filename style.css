@@ -838,6 +838,12 @@ body a,
 	text-decoration: underline; 
 }
 
+.img-responsive {
+  display: block;
+  height: auto;
+  max-width: 100%;
+}
+
 
 /* -------------------------------------------------------------------------------- */
 /*	8.	Post Formats
