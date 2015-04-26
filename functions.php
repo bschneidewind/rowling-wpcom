@@ -13,6 +13,16 @@ function rowling_setup() {
 
 	// Add post format support
 	add_theme_support( 'post-formats', array( 'gallery' ) );
+	
+	add_theme_support( 'infinite-scroll', array(
+	    'type'           => 'scroll',
+	    'footer_widgets' => false,
+	    'container'      => 'content',
+	    'wrapper'        => true,
+	    'render'         => false,
+	    'footer'         => 'page',
+	    'posts_per_page' => false
+	) );
 
 	// Set content-width
 	global $content_width;
