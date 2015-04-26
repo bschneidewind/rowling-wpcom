@@ -25,7 +25,6 @@
 				<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu', 'menu_class' => 'secondary-menu', 'container' => 'false' ) ); ?>
 
 				<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' => '<span class="screen-reader-text">', 'link_after'  => '</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s<li><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li></ul>' ) ); ?>
-
 			</div> <!-- /section-inner -->
 		</div> <!-- /top-nav -->
 
@@ -40,14 +39,13 @@
 				<div class="section-inner">
 
 					<?php if ( get_theme_mod( 'rowling_logo' ) ) : ?>
-
-					<a class="blog-logo" href='<?php echo esc_url( home_url( '/' ) ); ?>' title='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?> &mdash; <?php echo esc_attr( get_bloginfo( 'description' ) ); ?>' rel='home'>
-						<img src='<?php echo esc_url( get_theme_mod( 'rowling_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'title' ) ); ?>'>
-					</a>
+						<a class="blog-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ) '&mdash;' esc_attr( get_bloginfo( 'description', 'display' ) ); ?>" rel='home'>
+							<img src='<?php echo esc_url( get_theme_mod( 'rowling_logo' ) ); ?>' alt='<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>'>
+						</a>
 
 					<?php else : ?>
 
-					<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'title' ) . ' &mdash; ' . get_bloginfo( 'description' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'title' ) ); ?></a></h2>
+					<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ) '&mdash;' esc_attr( get_bloginfo( 'description', 'display' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h2>
 					<h4 class="blog-description"><?php bloginfo( 'description' ); ?></h4>
 
 					<?php endif; ?>
