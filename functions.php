@@ -35,47 +35,39 @@ function rowling_setup() {
 
 }
 
-// Register and enqueue scripts
-add_action( 'wp_enqueue_scripts', 'rowling_load_javascript_files' );
+// Register and enqueue scripts and styles
+add_action( 'wp_enqueue_scripts', 'rowling_load_assets' );
 
-function rowling_load_javascript_files() {
-	if ( !is_admin() ) {	
-		wp_register_script( 'rowling_doubletap', get_template_directory_uri() . '/assets/js/doubletaptogo.js', array( 'jquery' ), '', true );
-		wp_register_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/flexslider.js', array( 'jquery' ), '', true );	
-		wp_register_script( 'rowling_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '', true );
+function rowling_load_assets() {
+	// Register all styles
+	wp_register_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
+	wp_register_style( 'rowling_google_lato', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
+	wp_register_style( 'rowling_style', get_stylesheet_uri() );
+	
+	// Register all scripts
+	wp_register_script( 'rowling_doubletap', get_template_directory_uri() . '/assets/js/doubletaptogo.js', array( 'jquery' ), '', true );
+	wp_register_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/flexslider.js', array( 'jquery' ), '', true );	
+	wp_register_script( 'rowling_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '', true );
+	
+	wp_enqueue_script( 'rowling_doubletap' );
+	wp_enqueue_script( 'rowling_flexslider' );	
+	wp_enqueue_script( 'rowling_global' );
+	
+	wp_enqueue_style( 'rowling_fontawesome' );
+	wp_enqueue_style( 'rowling_google_lato' );
+    wp_enqueue_style( 'rowling_style' );
 
-		wp_enqueue_script( 'rowling_doubletap' );
-		wp_enqueue_script( 'rowling_flexslider' );	
-		wp_enqueue_script( 'rowling_global' );
-
-		if ( is_singular() ) {
-			wp_enqueue_script( 'comment-reply' );
-		}
+	if ( is_singular() ) {
+		wp_enqueue_script( 'comment-reply' );
 	}
 }
 
-// Register and enqueue styles
-add_action('wp_print_styles', 'rowling_load_style');
+// Register and enqueue admin stylesheet
+add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 
-function rowling_load_style() {
-	if ( !is_admin() ) {
-	    wp_register_style( 'rowling_google_lato', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
-	    wp_register_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
-	    wp_register_style( 'rowling_style', get_stylesheet_uri() );
-	    
-	    wp_enqueue_style( 'rowling_google_lato' );
-	    wp_enqueue_style( 'rowling_fontawesome' );
-	    wp_enqueue_style( 'rowling_style' );
-	}
-}
-
-// Add editor styles
-add_action( 'init', 'rowling_add_editor_styles' );
-
-function rowling_add_editor_styles() {
-    add_editor_style( 'rowling-editor-styles.css' );
-    $font_url = str_replace( ',', '%2C', '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic' );
-    add_editor_style( $font_url );
+function load_admin_styles() {
+	wp_register_style( 'rowling_admin_style', get_template_directory_uri() . '/assets/css/admin-style.css' );
+	wp_enqueue_style( 'rowling_admin_style' );
 }
 
 // Add sidebar widget areas
@@ -274,41 +266,24 @@ function rowling_modify_read_more_link() {
 }
 
 // Get comment excerpt length
-function rowling_get_comment_excerpt($comment_ID = 0, $num_words = 20) {
+function rowling_get_comment_excerpt( $comment_ID = 0, $num_words = 20 ) {
 	$comment = get_comment( $comment_ID );
-	$comment_text = strip_tags($comment->comment_content);
-	$blah = explode(' ', $comment_text);
-	if (count($blah) > $num_words) {
+	$comment_text = strip_tags( $comment->comment_content );
+	$blah = explode( ' ', $comment_text );
+	if ( count( $blah ) > $num_words ) {
 		$k = $num_words;
 		$use_dotdotdot = 1;
 	} else {
-		$k = count($blah);
+		$k = count( $blah );
 		$use_dotdotdot = 0;
 	}
 	$excerpt = '';
-	for ($i=0; $i<$k; $i++) {
+	for ( $i=0; $i<$k; $i++ ) {
 		$excerpt .= $blah[$i] . ' ';
 	}
-	$excerpt .= ($use_dotdotdot) ? '...' : '';
-	return apply_filters('get_comment_excerpt', $excerpt);
+	$excerpt .= ( $use_dotdotdot ) ? '...' : '';
+	return apply_filters( 'get_comment_excerpt', $excerpt );
 }
-
-
-// Style the admin area
-add_action('admin_head', 'rowling_admin_area_style');
-
-function rowling_admin_area_style() { 
-   echo '
-   <style type="text/css">
-	
-		#postimagediv #set-post-thumbnail img {
-			max-width: 100%;
-			height: auto;
-		}
-	
-	</style>';
-}
-
 
 // Flexslider function for format-gallery
 function rowling_flexslider($size) {
