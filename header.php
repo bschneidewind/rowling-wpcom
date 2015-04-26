@@ -48,7 +48,7 @@
 					<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) . ' &mdash; ' . get_bloginfo( 'description', 'display' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h2>
 					<?php $description = get_bloginfo( 'description', 'display' );
 					if ( $description || is_customize_preview() ) : ?>
-						<h4 class="blog-description"><?php echo $description; ?></h4>
+						<h4 class="blog-description"><?php esc_html_e( $description ); ?></h4>
 					<?php endif; ?>
 
 					<?php endif; ?>
