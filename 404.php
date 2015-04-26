@@ -10,6 +10,7 @@ get_header(); ?>
 	<div class="wrapper section-inner clearfix">
 		<div class="content">
 			<div class="post single single-post">
+
 				<p class="post-categories"><?php esc_html_e( 'Error 404', 'rowling' ); ?></p>
 				<div class="post-header">
 					 <h2 class="post-title"><?php esc_html_e( 'These are Not the Results You\'re Looking For', 'rowling' ); ?></h2>
@@ -23,9 +24,6 @@ get_header(); ?>
 
 			</div> <!-- /post -->
 		</div> <!-- /content -->
-
 		<?php get_sidebar(); ?>
-
 	</div> <!-- /wrapper.section-inner -->
-
 <?php get_footer();

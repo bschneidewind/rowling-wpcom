@@ -14,9 +14,9 @@ get_header(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class( 'single' ); ?>>
 			<div class="post-header">
 
-			<?php if ( has_category() ) : ?>
+				<?php if ( has_category() ) : ?>
 				<p class="post-categories"><?php the_category( ', ' ); ?></p>
-			<?php endif; ?>
+				<?php endif; ?>
 
 				<?php the_title( '<h2 class="post-title">', '</h2>' ); ?>
 
@@ -28,8 +28,8 @@ get_header(); ?>
 							<span class="fa fw fa-comment"></span><?php comments_popup_link( __( 'Leave a comment', '_s' ), __( '1 Comment', '_s' ), __( '% Comments', '_s' ) ); ?>
 						</span>
 					<?php endif; ?>
-
 				</div> <!-- /post-meta -->
+
 			</div> <!-- /post-header -->
 
 			<?php 
@@ -81,17 +81,12 @@ get_header(); ?>
 					<h4 class="title"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></h4>
 					<p class="description"><?php the_author_meta( 'description' ); ?></p>
 				</div> <!-- /post-author -->
+
 			</div> <!-- /post-inner -->
 		</div> <!-- /post -->
-
 		<?php comments_template( '', true ); ?>
-
-		<?php endwhile; endif; ?>    
-
+		<?php endwhile; endif; ?>
 	</div> <!-- /content -->
-
 	<?php get_sidebar(); ?>
-
 </div> <!-- /wrapper -->
-
 <?php get_footer();

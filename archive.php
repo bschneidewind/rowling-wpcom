@@ -29,13 +29,8 @@ get_header(); ?>
 				</div> <!-- /posts -->
 
 				<?php rowling_archive_navigation(); ?>
-
 			<?php endif; ?>
-
 		</div> <!-- /content -->
-
 		<?php get_sidebar(); ?>
-
 	</div> <!-- /wrapper.section-inner -->
-
 <?php get_footer();

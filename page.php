@@ -12,6 +12,7 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class( 'post single single-post' ); ?>>
+
 				<div class="post-header">
 					<?php the_title( '<h2 class="post-title">', '</h2>' ); ?>
 				</div> <!-- /post-header -->
@@ -23,7 +24,6 @@ get_header(); ?>
 						if( !empty( $get_description ) ) {
 							printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
 						} ?>
-
 				</div> <!-- /post-image -->
 				<?php endif; ?>
 
@@ -35,14 +35,9 @@ get_header(); ?>
 				</div> <!-- /post-inner -->
 
 				<?php comments_template( '', true ); ?>
-
 			</div> <!-- /post -->
 			<?php endwhile; ?>
-
 		</div> <!-- /content -->
-
 		<?php get_sidebar(); ?>
-
 	</div> <!-- /wrapper.section-inner -->
-
 <?php get_footer();
