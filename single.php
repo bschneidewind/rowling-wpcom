@@ -8,133 +8,90 @@
 get_header(); ?>
 
 <div class="wrapper section-inner clearfix">
-	
 	<div class="content">
-												        
+
 		<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
-		
-			<div id="post-<?php the_ID(); ?>" <?php post_class( 'single' ); ?>>
-				
-				<div class="post-header">
-										
-					<?php if ( has_category() ) : ?>
-						<p class="post-categories"><?php the_category( ', ' ); ?></p>
+		<div id="post-<?php the_ID(); ?>" <?php post_class( 'single' ); ?>>
+			<div class="post-header">
+
+			<?php if ( has_category() ) : ?>
+				<p class="post-categories"><?php the_category( ', ' ); ?></p>
+			<?php endif; ?>
+
+				<?php the_title( '<h2 class="post-title">', '</h2>' ); ?>
+
+				<div class="post-meta">
+					<?php rowling_post_meta(); ?>
+
+					<?php if ( comments_open() ) : ?>
+						<span class="post-comments">
+							<span class="fa fw fa-comment"></span><?php comments_popup_link( __( 'Leave a comment', '_s' ), __( '1 Comment', '_s' ), __( '% Comments', '_s' ) ); ?>
+						</span>
 					<?php endif; ?>
-					
-					<?php if ( get_the_title() ) : ?>
-						
-					    <h2 class="post-title"><a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
-					    
-					<?php endif; ?>
-					
-					<div class="post-meta">
-						<span class="resp"><?php esc_html_e( 'Posted','rowling' ); ?></span> <span class="post-meta-author"><?php esc_html_e( 'by','rowling' ); ?> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></span> <span class="post-meta-date"><?php esc_html_e( 'on','rowling' ); ?> <a href="<?php the_permalink(); ?>"><?php the_time( get_option( 'date_format' ) ); ?></a></span> <?php edit_post_link( __( 'Edit', 'rowling' ), ' &mdash; ' ) ?>
-						<?php if ( comments_open() ) : ?>
-							<span class="post-comments">
-								<?php 
-									comments_popup_link(
-										'<span class="fa fw fa-comment"></span>0<span class="resp"> ' . __( 'Comments', 'rowling' ) . '</span>', 
-										'<span class="fa fw fa-comment"></span>1<span class="resp"> ' . __( 'Comment', 'rowling' ) . '</span>', 
-										'<span class="fa fw fa-comment"></span>%<span class="resp"> ' . __( 'Comments', 'rowling' ) . '</span>'
-									); 
-								?>
-							</span>
-						<?php endif; ?>
-					</div> <!-- /post-meta -->
-					
-				</div> <!-- /post-header -->
-				
+
+				</div> <!-- /post-meta -->
+			</div> <!-- /post-header -->
+
+			<?php 
+			$post_format = get_post_format();
+			if ( $post_format == 'gallery' ) : 
+				rowling_flexslider( 'post-image' );
+			elseif ( has_post_thumbnail() ) : ?>
+
+			<div class="post-image clearfix">
+				<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image img-responsive' ) ); ?>
 				<?php 
-					$post_format = get_post_format();
-					if ( $post_format == 'gallery' ) : ?>
-			
-					<?php rowling_flexslider( 'post-image' ); ?>
-				
-				<?php elseif ( has_post_thumbnail() ) : ?>
-				<div class="post-image">
-					<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image img-responsive' ) ); ?>
-					<?php $get_description = get_post( get_post_thumbnail_id() )->post_excerpt;
-						if( !empty( $get_description ) ) {
-							printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
-						} ?>
+				$get_description = get_post( get_post_thumbnail_id() )->post_excerpt;
+				if( !empty( $get_description ) ) {
+					printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
+				} ?>
+			</div> <!-- /post-image -->
 
-				</div> <!-- /post-image -->
+			<?php endif; ?>
+
+			<?php rowling_related_posts( '3' ); // Number of related posts to display ?>
+
+			<div class="post-inner">
+				<div class="post-content">
+					<?php the_content(); ?>
+					<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>
+					<?php $args = array(
+						'before'		=> '<p class="page-links clearfix"><span class="title">' . __( 'Pages:','rowling' ) . '</span>',
+						'after'			=> '</p>',
+						'link_before'	=> '<span>',
+						'link_after'	=> '</span>',
+						'separator'		=> '',
+						'pagelink'		=> '%',
+						'echo'			=> 1
+					);
+					wp_link_pages( $args ); 
+					?>
+				</div>
+
+				<?php if ( has_tag() ) : ?>
+				<div class="post-tags">
+					<?php the_tags( '','' ); ?>
+				</div>
 				<?php endif; ?>
-				
-				<div class="clear"></div>
-				
-				<?php rowling_related_posts( '3' ); // Number of related posts to display ?>
-						
-				<div class="post-inner">
-					
-					<?php if ( get_the_content() ) : ?>
-	
-						<div class="post-content">
-						
-							<?php the_content(); ?>
-							
-							<?php 
-						    	$args = array(
-									'before'           => '<div class="clear"></div><p class="page-links"><span class="title">' . __( 'Pages:','rowling' ) . '</span>',
-									'after'            => '</p>',
-									'link_before'      => '<span>',
-									'link_after'       => '</span>',
-									'separator'        => '',
-									'pagelink'         => '%',
-									'echo'             => 1
-								);
-					    	
-					    		wp_link_pages( $args ); 
-							?>
-						
-						</div>
-					
-					<?php endif; ?>
-					
-					<?php if ( has_tag() ) : ?>
-					
-						<div class="post-tags">
-							
-							<?php the_tags( '','' ); ?>
-							
-						</div>
-					
-					<?php endif; ?>
-					
-					<div class="post-author">
-						
-						<a class="avatar" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
-														
-							<?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
-							
-						</a>
-						
-						<h4 class="title"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></h4>
-						
-						<p class="description"><?php the_author_meta( 'description' ); ?></p>
 
-					</div> <!-- /post-author -->
-					
-					<?php rowling_related_posts( '3' ); // Number of related posts to display ?>
-									
-				</div> <!-- /post-inner -->
-				
-				<div class="clear"></div>
-				
-			</div> <!-- /post -->
-			
-			<?php comments_template( '', true ); ?>
-										                        
-	   	<?php endwhile; else: ?>
-	
-			<p><?php esc_html_e( 'We couldn\'t find any posts that matched your query. Please try again.', 'rowling' ); ?></p>
-		
-		<?php endif; ?>    
-	
+				<div class="post-author">
+					<a class="avatar" href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>">
+						<?php echo get_avatar( get_the_author_meta( 'ID' ), 100 ); ?>
+					</a>
+					<h4 class="title"><a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></h4>
+					<p class="description"><?php the_author_meta( 'description' ); ?></p>
+				</div> <!-- /post-author -->
+			</div> <!-- /post-inner -->
+		</div> <!-- /post -->
+
+		<?php comments_template( '', true ); ?>
+
+		<?php endwhile; endif; ?>    
+
 	</div> <!-- /content -->
-	
+
 	<?php get_sidebar(); ?>
-	
+
 </div> <!-- /wrapper -->
-		
+
 <?php get_footer();

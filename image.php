@@ -61,19 +61,13 @@ get_header(); ?>
 
 					<footer class="entry-footer">
 						<div class="post-meta">
-						<span class="resp"><?php esc_html_e( 'Posted','rowling' ); ?></span> <span class="post-meta-author"><?php esc_html_e( 'by','rowling' ); ?> <a href="<?php echo get_author_posts_url( get_the_author_meta( 'ID' ) ); ?>"><?php the_author_meta( 'display_name' ); ?></a></span> <span class="post-meta-date"><?php esc_html_e( 'on','rowling' ); ?> <a href="<?php the_permalink(); ?>"><?php the_time( get_option( 'date_format' ) ); ?></a></span> <?php edit_post_link( __( 'Edit', 'rowling' ), ' &mdash; ' ) ?>
-						<?php if ( comments_open() ) : ?>
-							<span class="post-comments">
-								<?php 
-									comments_popup_link(
-										'<span class="fa fw fa-comment"></span>0<span class="resp"> ' . __( 'Comments', 'rowling' ) . '</span>', 
-										'<span class="fa fw fa-comment"></span>1<span class="resp"> ' . __( 'Comment', 'rowling' ) . '</span>', 
-										'<span class="fa fw fa-comment"></span>%<span class="resp"> ' . __( 'Comments', 'rowling' ) . '</span>'
-									); 
-								?>
-							</span>
-						<?php endif; ?>
-					</div> <!-- /post-meta -->
+							<?php rowling_post_meta(); ?>
+							<?php if ( comments_open() ) : ?>
+								<span class="post-comments">
+									<span class="fa fw fa-comment"></span><?php comments_popup_link( __( 'Leave a comment', '_s' ), __( '1 Comment', '_s' ), __( '% Comments', '_s' ) ); ?>
+								</span>
+							<?php endif; ?>
+						</div> <!-- /post-meta -->
 					
 						<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>
 					</footer><!-- .entry-footer -->

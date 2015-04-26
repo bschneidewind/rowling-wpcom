@@ -6,7 +6,7 @@
  */
 ?>
 
-<div id="post-<?php the_ID(); ?>" <?php post_class( 'post' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'post clearfix' ); ?>>
 	<?php if ( has_post_thumbnail() ) : ?>
 
 		<div class="post-image">
