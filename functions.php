@@ -56,7 +56,7 @@ function rowling_load_assets() {
 	
 	// Register all scripts
 	wp_register_script( 'rowling_doubletap', get_template_directory_uri() . '/assets/js/doubletaptogo.js', array( 'jquery' ), '', true );
-	wp_register_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/flexslider.js', array( 'jquery' ), '', true );	
+	wp_register_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/vendor/jquery.flexslider.js', array( 'jquery' ), '', true );	
 	wp_register_script( 'rowling_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '', true );
 	
 	wp_enqueue_script( 'rowling_doubletap' );
