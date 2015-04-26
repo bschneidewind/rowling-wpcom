@@ -12,10 +12,7 @@ get_header(); ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 			<div id="post-<?php the_ID(); ?>" <?php post_class( 'post single single-post' ); ?>>
-
-				<div class="post-header">
-					<?php the_title( '<h2 class="post-title">', '</h2>' ); ?>
-				</div> <!-- /post-header -->
+				<?php the_title( '<div class="post-header"><h2 class="post-title">', '</h2></div>' ); ?>
 
 				<?php if ( has_post_thumbnail() ) : ?>
 				<div class="post-image">
