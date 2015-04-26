@@ -70,6 +70,15 @@ function load_admin_styles() {
 	wp_enqueue_style( 'rowling_admin_style' );
 }
 
+// Add editor styles
+add_action( 'admin_init', 'rowling_add_editor_styles' );
+
+function rowling_add_editor_styles() {
+    $font_url = '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic';
+    add_editor_style( str_replace( ',', '%2C', $font_url ) );
+    add_editor_style( '/assets/css/rowling-editor-styles.css' );
+}
+
 // Add sidebar widget areas
 add_action( 'widgets_init', 'rowling_sidebar_reg' ); 
 
