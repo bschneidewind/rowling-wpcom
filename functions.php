@@ -255,7 +255,9 @@ function rowling_archive_navigation() {
 				if ( get_next_posts_link() ) echo '<li class="archive-nav-older">' . get_next_posts_link( __('Next', 'rowling') . ' &rarr;') . '</li>'; ?>
 
 		</div> <!-- /archive-nav -->
-	<?php endif;
+
+	<?php 
+	endif;
 }  // end of function rowling_archive_navigation
 
 // Custom read more link text
@@ -286,65 +288,61 @@ function rowling_get_comment_excerpt( $comment_ID = 0, $num_words = 20 ) {
 }
 
 // Flexslider function for format-gallery
-function rowling_flexslider($size) {
+function rowling_flexslider( $size ) {
 
-	if ( is_page()) :
+	if ( is_page() ) :
 		$attachment_parent = $post->ID;
 	else : 
 		$attachment_parent = get_the_ID();
 	endif;
 
-	if($images = get_posts(array(
-		'post_parent'    => $attachment_parent,
-		'post_type'      => 'attachment',
-		'numberposts'    => -1, // show all
-		'post_status'    => null,
-		'post_mime_type' => 'image',
-                'orderby'        => 'menu_order',
-                'order'           => 'ASC',
-	))) { ?>
-	
-		<?php if ( !is_single() ) : // Make it a link if it's an archive ?>
-	
-			<a class="flexslider" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-				
-		<?php else : // ...and just a div if it's a single post ?>
-		
-			<div class="flexslider">
-				
-		<?php endif; ?>
-		
-			<ul class="slides">
-	
-				<?php foreach($images as $image) { 
-					$attimg = wp_get_attachment_image($image->ID,$size); ?>
-					
-					<li>
-						<?php echo esc_url( $attimg ); ?>
-						<?php if ( !empty($image->post_excerpt) && is_single()) : ?>
-							
-							<?php printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $image->post_excerpt ) ); ?>
-													
-						<?php endif; ?>
-					</li>
-					
-				<?php }; ?>
-		
-			</ul>
-			
-		<?php 
-			if ( !is_single() )
-				echo '</a>';
-			else
-				echo '</div>';
-				
-	}
-}
+	if( $images = get_posts( array(
+		'post_parent'    =>		$attachment_parent,
+		'post_type'      => 	'attachment',
+		'numberposts'    => 	-1, // show all
+		'post_status'    => 	null,
+		'post_mime_type' => 	'image',
+		'orderby'        => 	'menu_order',
+		'order'          => 	'ASC',
+	) ) ) { ?>
 
+		<?php if ( !is_single() ) : // Make it a link if it's an archive ?>
+
+			<a class="flexslider" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+
+		<?php else : // ...and just a div if it's a single post ?>
+
+			<div class="flexslider">
+
+		<?php endif; ?>
+
+			<ul class="slides">
+
+				<?php foreach( $images as $image ) { 
+				$attimg = wp_get_attachment_image( $image->ID,$size ); ?>
+
+				<li>
+				<?php echo esc_url( $attimg );
+
+				if ( !empty( $image->post_excerpt ) && is_single() ) :
+					printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $image->post_excerpt ) );
+				endif; ?>
+				</li>
+
+				<?php }; ?>
+
+			</ul>
+
+		<?php 
+		if ( !is_single() ) {
+			echo '</a>';
+		} else {
+			echo '</div>';
+		}
+	}
+} // end of function rowling_flexslider
 
 // Rowling comment function
-if ( ! function_exists( 'rowling_comment' ) ) :
-
 function rowling_comment( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 	switch ( $comment->comment_type ) :
@@ -353,106 +351,83 @@ function rowling_comment( $comment, $args, $depth ) {
 	?>
 	
 	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
-	
 		<?php __( 'Pingback:', 'rowling' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( 'Edit', 'rowling' ), '<span class="edit-link">', '</span>' ); ?>
-		
 	</li>
-	<?php
-			break;
-		default :
-		global $post;
-	?>
-	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 	
+	<?php break; default : global $post; ?>
+	
+	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
 		<div id="comment-<?php comment_ID(); ?>" class="comment">
-			
 			<?php echo get_avatar( $comment, 160 ); ?>
-			
 			<?php if ( $comment->user_id === $post->post_author ) : ?>
-					
-				<a class="comment-author-icon" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" title="<?php esc_html_e('Comment by post author','rowling'); ?>"><div class="fa fw fa-user"></div></a>
-			
+				<a class="comment-author-icon" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" title="<?php esc_html_e( 'Comment by post author', 'rowling' ); ?>"><span class="fa fw fa-user"></span></a>
 			<?php endif; ?>
-			
+
 			<div class="comment-inner">
-			
 				<div class="comment-header">
-											
 					<h4><?php echo get_comment_author_link(); ?></h4>
-				
 				</div> <!-- /comment-header -->
-				
+
 				<div class="comment-content post-content">
-			
 					<?php comment_text(); ?>
-					
 				</div><!-- /comment-content -->
-				
-				<div class="comment-meta">
-					
+
+				<div class="comment-meta clearfix">
 					<div class="fleft">
-						<div class="fa fw fa-clock-o"></div><a class="comment-date-link" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" title="<?php echo get_comment_date() . ' at ' . get_comment_time(); ?>"><?php echo get_comment_date(get_option('date_format')); ?></a>
-						<?php edit_comment_link( __( 'Edit', 'rowling' ), '<div class="fa fw fa-wrench"></div>', '' ); ?>
-					</div>
+						<span class="fa fw fa-clock-o"></span><a class="comment-date-link" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" title="<?php echo get_comment_date() . ' at ' . get_comment_time(); ?>"><?php echo get_comment_date(get_option('date_format')); ?></a>
+						<?php edit_comment_link( __( 'Edit', 'rowling' ), '<span class="fa fw fa-wrench"></span>', '' ); ?>
+					</div><!-- /fleft -->
+
+					<?php 
+					if ( '0' == $comment->comment_approved ) : ?>
 					
-					<?php if ( '0' == $comment->comment_approved ) : ?>
-				
 						<div class="comment-awaiting-moderation fright">
-							<div class="fa fw fa-exclamation-circle"></div><?php esc_html_e( 'Awaiting moderation', 'rowling' ); ?>
+							<span class="fa fw fa-exclamation-circle"></span><?php esc_html_e( 'Awaiting moderation', 'rowling' ); ?>
 						</div>
-						
-					<?php else : ?>
-						
-						<?php 
-							comment_reply_link( array( 
-								'reply_text' 	=>  	__('Reply','rowling'),
-								'depth'			=> 		$depth, 
-								'max_depth' 	=> 		$args['max_depth'],
-								'before'		=>		'<div class="fright"><div class="fa fw fa-reply"></div>',
-								'after'			=>		'</div>'
-								) 
-							); 
-						?>
-					
-					<?php endif; ?>
-					
-					<div class="clear"></div>
-					
+
+					<?php 
+					else : 
+
+						comment_reply_link( array( 
+							'reply_text' 	=>  	__( 'Reply', 'rowling' ),
+							'depth'			=> 		$depth, 
+							'max_depth' 	=> 		$args['max_depth'],
+							'before'		=>		'<div class="fright"><span class="fa fw fa-reply"></span>',
+							'after'			=>		'</div>'
+							) 
+						);
+
+					endif; ?>
+
 				</div> <!-- /comment-meta -->
-								
 			</div> <!-- /comment-inner -->
-										
 		</div><!-- /comment-## -->
-				
+
 	<?php
-		break;
-	endswitch;
-}
-endif;
+	break; endswitch;
+} // end of function rowling_comment
 
-
-// rowling theme options
+// rowling customizable theme options
 class Rowling_Customize {
 
    public static function rowling_register ( $wp_customize ) {
-   
+
       //1. Define a new section (if desired) to the Theme Customizer
       $wp_customize->add_section( 'rowling_options', 
          array(
             'title' => __( 'Options for Rowling', 'rowling' ), //Visible title of section
             'priority' => 35, //Determines what order this appears in
             'capability' => 'edit_theme_options', //Capability needed to tweak
-            'description' => __('Allows you to customize theme settings for Rowling.', 'rowling'), //Descriptive tooltip
+            'description' => __( 'Allows you to customize theme settings for Rowling.', 'rowling' ), //Descriptive tooltip
          ) 
       );
-      
+
       $wp_customize->add_section( 'rowling_logo_section' , array(
 		    'title'       => __( 'Logo', 'rowling' ),
 		    'priority'    => 40,
-		    'description' => __('Upload a logo to replace the default site title in the header.', 'rowling'),
+		    'description' => __( 'Upload a logo to replace the default site title in the header.', 'rowling' ),
 	  ) );
-      
-      
+
       //2. Register new settings to the WP database...
       $wp_customize->add_setting( 'accent_color', //No need to use a SERIALIZED name, as `theme_mod` settings already live under one db record
          array(
@@ -462,14 +437,13 @@ class Rowling_Customize {
       		'sanitize_callback' => 'sanitize_hex_color'
          ) 
       );
-	  
+
 	  $wp_customize->add_setting( 'rowling_logo', 
       	array( 
       		'sanitize_callback' => 'esc_url_raw'
       	) 
       );
-      
-      
+
       //3. Finally, we define the control itself (which links a setting to a section and renders the HTML controls)...
       $wp_customize->add_control( new WP_Customize_Color_Control( //Instantiate the color control class
          $wp_customize, //Pass the $wp_customize object (required)
@@ -481,13 +455,13 @@ class Rowling_Customize {
             'priority' => 10, //Determines the order this control appears in for the specified section
          ) 
       ) );
-      
+
       $wp_customize->add_control( new WP_Customize_Image_Control( $wp_customize, 'rowling_logo', array(
 		    'label'    => __( 'Logo', 'rowling' ),
 		    'section'  => 'rowling_logo_section',
 		    'settings' => 'rowling_logo',
 	  ) ) );
-      
+
       //4. We can also change built-in settings by modifying properties. For instance, let's make some stuff use live preview JS...
       $wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
       $wp_customize->get_setting( 'blogdescription' )->transport = 'postMessage';
@@ -495,89 +469,84 @@ class Rowling_Customize {
 
    public static function rowling_header_output() {
       ?>
-      
+
 	      <!-- Customizer CSS --> 
-	      
 	      <style type="text/css">
-	           <?php self::rowling_generate_css('body a', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('body a:hover', 'color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( 'body a', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( 'body a:hover', 'color', 'accent_color' ); ?>
 
-	           <?php self::rowling_generate_css('.blog-title a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.navigation .section-inner', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.primary-menu ul li:hover > a', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.search-container .search-button:hover', 'color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.blog-title a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.navigation .section-inner', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.primary-menu ul li:hover > a', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.search-container .search-button:hover', 'color', 'accent_color' ); ?>
 	           
-	           <?php self::rowling_generate_css('.sticky .sticky-tag', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.sticky .sticky-tag:after', 'border-right-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.sticky .sticky-tag:after', 'border-left-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-categories', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.single .post-meta a', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.single .post-meta a:hover', 'border-bottom-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.single-post .post-image-caption .fa', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.related-post .category', 'color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.sticky .sticky-tag', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.sticky .sticky-tag:after', 'border-right-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.sticky .sticky-tag:after', 'border-left-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-categories', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.single .post-meta a', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.single .post-meta a:hover', 'border-bottom-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.single-post .post-image-caption .fa', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.related-post .category', 'color', 'accent_color' ); ?>
 	           
-	           <?php self::rowling_generate_css('.post-content a', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content a:hover', 'border-bottom-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content blockquote:after', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content fieldset legend', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content input[type="submit"]', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content input[type="button"]', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content input[type="reset"]', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content input[type="submit"]:hover', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content input[type="button"]:hover', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content input[type="reset"]:hover', 'background', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.post-content a', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content a:hover', 'border-bottom-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content blockquote:after', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content fieldset legend', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content input[type="submit"]', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content input[type="button"]', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content input[type="reset"]', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content input[type="submit"]:hover', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content input[type="button"]:hover', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content input[type="reset"]:hover', 'background', 'accent_color' ); ?>
 	           
-	           <?php self::rowling_generate_css('.page-edit-link', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-content .page-links a:hover', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-tags a:hover', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-tags a:hover:before', 'border-right-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.post-navigation h4 a:hover', 'color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.page-edit-link', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-content .page-links a:hover', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-tags a:hover', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-tags a:hover:before', 'border-right-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.post-navigation h4 a:hover', 'color', 'accent_color' ); ?>
 	           
-	           <?php self::rowling_generate_css('.no-comments .fa', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comments-title-container .fa', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comment-reply-title .fa', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comments-title-link a', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comments-title-link a:hover', 'border-bottom-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comments .pingbacks li a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comment-header h4 a', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.bypostauthor .comment-author-icon', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.form-submit #submit', 'background-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.comments-nav a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.pingbacks-title', 'border-bottom-color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.no-comments .fa', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comments-title-container .fa', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comment-reply-title .fa', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comments-title-link a', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comments-title-link a:hover', 'border-bottom-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comments .pingbacks li a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comment-header h4 a', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.bypostauthor .comment-author-icon', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.form-submit #submit', 'background-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.comments-nav a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.pingbacks-title', 'border-bottom-color', 'accent_color' ); ?>
 
-	           <?php self::rowling_generate_css('.page-title h4', 'border-bottom-color', 'accent_color'); ?>	           
-	           <?php self::rowling_generate_css('.archive-nav a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.archive-nav a:hover', 'border-top-color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.page-title h4', 'border-bottom-color', 'accent_color' ); ?>	           
+	           <?php self::rowling_generate_css( '.archive-nav a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.archive-nav a:hover', 'border-top-color', 'accent_color' ); ?>
 				
-			   <?php self::rowling_generate_css('.widget-title', 'border-bottom-color', 'accent_color'); ?>	           
-	           <?php self::rowling_generate_css('.widget-content .textwidget a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget_archive li a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget_categories li a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget_meta li a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget_nav_menu li a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget_rss .widget-content ul a.rsswidget:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('#wp-calendar thead th', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('#wp-calendar tfoot a:hover', 'color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget .tagcloud a:hover', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.widget .tagcloud a:hover:before', 'border-right-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.footer .widget .tagcloud a:hover', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.footer .widget .tagcloud a:hover:before', 'border-right-color', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.wrapper .search-button:hover', 'color', 'accent_color'); ?>
+			   <?php self::rowling_generate_css( '.widget-title', 'border-bottom-color', 'accent_color' ); ?>	           
+	           <?php self::rowling_generate_css( '.widget-content .textwidget a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget_archive li a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget_categories li a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget_meta li a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget_nav_menu li a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget_rss .widget-content ul a.rsswidget:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '#wp-calendar thead th', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '#wp-calendar tfoot a:hover', 'color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget .tagcloud a:hover', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.widget .tagcloud a:hover:before', 'border-right-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.footer .widget .tagcloud a:hover', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.footer .widget .tagcloud a:hover:before', 'border-right-color', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.wrapper .search-button:hover', 'color', 'accent_color' ); ?>
 	           
-	           <?php self::rowling_generate_css('.to-the-top', 'background', 'accent_color'); ?>
-	           <?php self::rowling_generate_css('.credits .copyright a:hover', 'color', 'accent_color'); ?>
+	           <?php self::rowling_generate_css( '.to-the-top', 'background', 'accent_color' ); ?>
+	           <?php self::rowling_generate_css( '.credits .copyright a:hover', 'color', 'accent_color' ); ?>
 
-	           <?php self::rowling_generate_css('.nav-toggle', 'background-color', 'accent_color'); ?>
-				
-				
+	           <?php self::rowling_generate_css( '.nav-toggle', 'background-color', 'accent_color' ); ?>
 	      </style> 
-	      
 	      <!--/Customizer CSS-->
-	      
       <?php
-   }
-   
+   } // end of public static function rowling_header_output
+
    public static function rowling_live_preview() {
       wp_enqueue_script( 
            'rowling-themecustomizer', // Give the script a unique ID
@@ -586,13 +555,13 @@ class Rowling_Customize {
            '', // Define a version (optional) 
            true // Specify whether to put in footer (leave this true)
       );
-   }
+   } // end of public static function rowling_live_preview
 
    public static function rowling_generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
       $return = '';
-      $mod = get_theme_mod($mod_name);
+      $mod = get_theme_mod( $mod_name );
       if ( ! empty( $mod ) ) {
-         $return = sprintf('%s { %s:%s; }',
+         $return = sprintf( '%s { %s:%s; } ',
             $selector,
             $style,
             $prefix.$mod.$postfix
@@ -603,7 +572,7 @@ class Rowling_Customize {
       }
       return $return;
     }
-}
+} // end of public static function rowling_generate_css
 
 // Setup the Theme Customizer settings and controls...
 add_action( 'customize_register' , array( 'Rowling_Customize' , 'rowling_register' ) );
@@ -614,12 +583,8 @@ add_action( 'wp_head' , array( 'Rowling_Customize' , 'rowling_header_output' ) )
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init' , array( 'Rowling_Customize' , 'rowling_live_preview' ) );
 
-/**
-* Load WordPress.com items
-*/
+// Setup WordPress.com specific items
 require get_template_directory() . '/inc/wpcom.php';
 
-/**
-* Load Jetpack items
-*/
+// Setup Jetpack specific items
 require get_template_directory() . '/inc/jetpack.php';
