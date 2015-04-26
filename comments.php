@@ -109,4 +109,4 @@ if ( have_comments() ) : ?>
 	<div class="respond-container">
 		<?php comment_form( $comments_args ); ?>
 	</div> <!-- /respond-container -->
-<?php endif; ?>
+<?php endif;
