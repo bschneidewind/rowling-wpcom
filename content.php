@@ -10,7 +10,6 @@
 	<?php if ( has_post_thumbnail() ) : ?>
 
 		<div class="post-image">
-
 			<?php if ( is_sticky() ) : //Show the banner/star for sticky posts  ?>
 				<a class="sticky-tag" title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>">
 					<span class="fa fw fa-star"></span>
@@ -20,13 +19,11 @@
 			<a title="<?php the_title_attribute(); ?>" href="<?php the_permalink(); ?>">	
 				<?php the_post_thumbnail( 'post-image-thumb' ); ?>
 			</a>
-
 		</div> <!-- /post-image -->
 
 	<?php endif; ?>
 
 	<div class="post-header">
-
 		<?php if ( has_category() ) : ?>
 			<p class="post-categories"><?php the_category( ', ' ); ?></p>
 		<?php endif; ?>

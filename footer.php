@@ -17,7 +17,6 @@
 				<div class="attribution">
 					<?php printf( __( 'Theme: %1$s by %2$s.', 'rowling' ), 'Rowling', '<a href="http://www.andersnoren.se" rel="designer">Anders Nor&eacute;n</a>' ); ?>
 				</div> <!-- /attribution -->
-
 			</div>  <!-- /section inner -->
 		</div> <!-- /credits -->
 	</footer>
