@@ -56,9 +56,9 @@ class rowling_recent_posts extends WP_Widget {
 										if ( has_post_thumbnail() )
 											the_post_thumbnail('thumbnail');
 										elseif ( $post_format == 'gallery' )									
-											echo '<div class="fa fw fa-camera"></div>';
+											echo '<span class="fa fw fa-camera"></span>';
 										else
-											echo '<div class="fa fw fa-file-text"></div>';
+											echo '<span class="fa fw fa-file-text"></span>';
 									?>
 									
 								</div>
