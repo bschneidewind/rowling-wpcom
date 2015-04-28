@@ -19,8 +19,7 @@ get_header(); ?>
 					<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image img-responsive' ) ); ?>
 					<?php $get_description = get_post( get_post_thumbnail_id() )->post_excerpt;
 					if
-					( !empty( $get_description ) )
-					{
+					( ! empty( $get_description ) ) {
 						printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
 					} ?>
 				</div> <!-- /post-image -->

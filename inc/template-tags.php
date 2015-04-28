@@ -12,7 +12,8 @@ if ( ! function_exists( 'rowling_post_meta' ) ) :
 function rowling_post_meta() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 
-	$time_string = sprintf( $time_string,
+	$time_string = sprintf(
+		$time_string,
 		esc_attr( get_the_date( 'c' ) ),
 		esc_html( get_the_date() ),
 		esc_attr( get_the_modified_date( 'c' ) ),
@@ -48,7 +49,7 @@ function rowling_get_comment_excerpt( $comment_ID = 0, $num_words = 20 ) {
 		$use_dotdotdot = 0;
 	}
 	$excerpt = '';
-	for ( $i=0; $i<$k; $i++ ) {
+	for ( $i = 0; $i < $k; $i++ ) {
 		$excerpt .= $blah[$i] . ' ';
 	}
 	$excerpt .= ( $use_dotdotdot ) ? '...' : '';
@@ -66,17 +67,20 @@ function rowling_flexslider( $size ) {
 		$attachment_parent = get_the_ID();
 	endif;
 
-	if( $images = get_posts( array(
-		'post_parent'    =>		$attachment_parent,
-		'post_type'      => 	'attachment',
-		'numberposts'    => 	-1, // show all
-		'post_status'    => 	null,
-		'post_mime_type' => 	'image',
-		'orderby'        => 	'menu_order',
-		'order'          => 	'ASC',
-	) ) ) { ?>
+	if ( $images = get_posts(
+		array(
+			'post_parent' => $attachment_parent,
+			'post_type' => 'attachment',
+			'numberposts' => -1, // show all
+			'post_status' => null,
+			'post_mime_type' => 'image',
+			'orderby' => 'menu_order',
+			'order' => 'ASC',
+		) 
+	) 
+) { ?>
 
-		<?php if ( !is_single() ) : // Make it a link if it's an archive ?>
+		<?php if ( ! is_single() ) : // Make it a link if it's an archive ?>
 
 			<a class="flexslider" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 
@@ -88,13 +92,14 @@ function rowling_flexslider( $size ) {
 
 			<ul class="slides">
 
-				<?php foreach( $images as $image ) { 
-				$attimg = wp_get_attachment_image( $image->ID,$size ); ?>
+				<?php 
+				foreach ( $images as $image ) { 
+				$attimg = wp_get_attachment_image( $image->ID, $size ); ?>
 
 				<li>
 				<?php echo esc_url( $attimg );
 
-				if ( !empty( $image->post_excerpt ) && is_single() ) :
+				if ( ! empty( $image->post_excerpt ) && is_single() ) :
 					printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $image->post_excerpt ) );
 				endif; ?>
 				</li>
@@ -104,7 +109,7 @@ function rowling_flexslider( $size ) {
 			</ul>
 
 		<?php 
-		if ( !is_single() ) {
+		if ( ! is_single() ) {
 			echo '</a>';
 		} else {
 			echo '</div>';
@@ -146,7 +151,7 @@ function rowling_comment( $comment, $args, $depth ) {
 
 				<div class="comment-meta clearfix">
 					<div class="fleft">
-						<span class="fa fw fa-clock-o"></span><a class="comment-date-link" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" title="<?php echo get_comment_date() . ' at ' . get_comment_time(); ?>"><?php echo get_comment_date(get_option('date_format')); ?></a>
+						<span class="fa fw fa-clock-o"></span><a class="comment-date-link" href="<?php echo esc_url( get_comment_link( $comment->comment_ID ) ); ?>" title="<?php echo get_comment_date() . ' at ' . get_comment_time(); ?>"><?php echo get_comment_date( get_option( 'date_format' ) ); ?></a>
 						<?php edit_comment_link( __( 'Edit', 'rowling' ), '<span class="fa fw fa-wrench"></span>', '' ); ?>
 					</div><!-- /fleft -->
 
@@ -156,16 +161,15 @@ function rowling_comment( $comment, $args, $depth ) {
 						<div class="comment-awaiting-moderation fright">
 							<span class="fa fw fa-exclamation-circle"></span><?php esc_html_e( 'Awaiting moderation', 'rowling' ); ?>
 						</div>
-
 					<?php 
 					else : 
-
-						comment_reply_link( array( 
-							'reply_text' 	=>  	__( 'Reply', 'rowling' ),
-							'depth'			=> 		$depth, 
-							'max_depth' 	=> 		$args['max_depth'],
-							'before'		=>		'<div class="fright"><span class="fa fw fa-reply"></span>',
-							'after'			=>		'</div>'
+						comment_reply_link(
+							array( 
+								'reply_text' => __( 'Reply', 'rowling' ),
+								'depth' => $depth, 
+								'max_depth' => $args['max_depth'],
+								'before' => '<div class="fright"><span class="fa fw fa-reply"></span>',
+								'after' => '</div>',
 							) 
 						);
 
@@ -190,21 +194,24 @@ function rowling_related_posts( $number_of_posts ) { ?>
 			
 			<?php // Check for posts in the same category
 				global $post;
-				$cat_ID = array();
+				$cat_ID     = array();
 				$categories = get_the_category();
-				foreach( $categories as $category ) {
+				foreach ( $categories as $category ) {
 					array_push( $cat_ID,$category->cat_ID );
 				}
 
-				$related_posts = new WP_Query( apply_filters(
-				'rowling_related_posts_args', array(
-				        'posts_per_page'		=>	$number_of_posts,
-				        'post_status'			=>	'publish',
-				        'category__in'			=>	$cat_ID,
-				        'post__not_in'			=>	array( $post->ID ),
-				        'meta_key'				=>	'_thumbnail_id',
-				        'ignore_sticky_posts'	=>	true
-				) ) );
+				$related_posts = new WP_Query(
+				apply_filters(
+					'rowling_related_posts_args', array(
+						'posts_per_page' => $number_of_posts,
+						'post_status' => 'publish',
+						'category__in' => $cat_ID,
+						'post__not_in' => array( $post->ID ),
+						'meta_key' => '_thumbnail_id',
+						'ignore_sticky_posts' => true,
+						) 
+					) 
+				);
 
 				if ( $related_posts->have_posts() ) : while ( $related_posts->have_posts() ) : $related_posts->the_post();
 				
@@ -231,18 +238,24 @@ function rowling_related_posts( $number_of_posts ) { ?>
 							
 					</a>
 				
-				<?php endwhile; else: // If there are no other posts in the post categories, get random posts ?>
+				<?php 
+				endwhile;
+				else: 
+				?>
 
 				<?php
-					$related_posts = new WP_Query( apply_filters(
-					'rowling_related_posts_args', array(
-					        'posts_per_page'		=>	$number_of_posts,
-					        'post_status'			=>	'publish',
-					        'orderby'				=>	'rand',
-					        'post__not_in'			=>	array( $post->ID ),
-							'meta_key'				=>	'_thumbnail_id',
-					        'ignore_sticky_posts'	=>	true
-					) ) );
+					$related_posts = new WP_Query(
+					apply_filters(
+						'rowling_related_posts_args', array(
+							'posts_per_page' => $number_of_posts,
+							'post_status' => 'publish',
+							'orderby' => 'rand',
+							'post__not_in' => array( $post->ID ),
+							'meta_key' => '_thumbnail_id',
+							'ignore_sticky_posts' => true,
+							) 
+						) 
+					);
 					
 					if ( $related_posts->have_posts() ) : while ( $related_posts->have_posts() ) : $related_posts->the_post();
 					
@@ -275,7 +288,7 @@ function rowling_related_posts( $number_of_posts ) { ?>
 
 		</div> <!-- /row -->
 
-		<?php wp_reset_query(); ?>
+		<?php wp_reset_postdata(); ?>
 
 	</div> <!-- /related-posts -->
 
@@ -294,7 +307,7 @@ function rowling_archive_navigation() {
 		<div class="archive-nav clearfix">
 
 			<?php 
-				if ( get_previous_posts_link() ) echo '<li class="archive-nav-newer">' . get_previous_posts_link( '&larr; ' . __('Previous', 'rowling')) . '</li>';
+				if ( get_previous_posts_link() ) echo '<li class="archive-nav-newer">' . get_previous_posts_link( '&larr; ' . __( 'Previous', 'rowling' ) ) . '</li>';
 				$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
 				$max   = intval( $wp_query->max_num_pages );
 
@@ -339,7 +352,7 @@ function rowling_archive_navigation() {
 					printf( '<li class="number%s"><a href="%s">%s</a></li>' . "\n", $class, esc_url( get_pagenum_link( $max ) ), $max );
 				}
 
-				if ( get_next_posts_link() ) echo '<li class="archive-nav-older">' . get_next_posts_link( __('Next', 'rowling') . ' &rarr;') . '</li>'; ?>
+				if ( get_next_posts_link() ) echo '<li class="archive-nav-older">' . get_next_posts_link( __( 'Next', 'rowling' ) . ' &rarr;' ) . '</li>'; ?>
 
 		</div> <!-- /archive-nav -->
 

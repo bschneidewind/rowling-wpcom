@@ -15,14 +15,15 @@ function rowling_setup() {
 	add_theme_support( 'post-formats', array( 'gallery' ) );
 
 	add_theme_support( 'infinite-scroll', array(
-	    'type'           => 'scroll',
-	    'footer_widgets' => false,
-	    'container'      => 'content',
-	    'wrapper'        => true,
-	    'render'         => false,
-	    'footer'         => 'page',
-	    'posts_per_page' => false
-	) );
+		'type' => 'scroll',
+		'footer_widgets' => false,
+		'container' => 'content',
+		'wrapper' => true,
+		'render' => false,
+		'footer' => 'page',
+		'posts_per_page' => false,
+		)
+	);
 
 	// Set content-width
 	global $content_width;
@@ -30,7 +31,7 @@ function rowling_setup() {
 
 	// Post thumbnails
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size ( 88, 88, true );
+	set_post_thumbnail_size( 88, 88, true );
 
 	add_image_size( 'post-image', 816, 9999 );
 	add_image_size( 'post-image-thumb', 400, 200, true );
@@ -65,7 +66,7 @@ function rowling_load_assets() {
 
 	wp_enqueue_style( 'rowling_fontawesome' );
 	wp_enqueue_style( 'rowling_google_lato' );
-    wp_enqueue_style( 'rowling_style' );
+	wp_enqueue_style( 'rowling_style' );
 
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -84,9 +85,9 @@ function load_admin_styles() {
 add_action( 'admin_init', 'rowling_add_editor_styles' );
 
 function rowling_add_editor_styles() {
-    $font_url = '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic';
-    add_editor_style( str_replace( ',', '%2C', $font_url ) );
-    add_editor_style( '/assets/css/rowling-editor-styles.css' );
+	$font_url = '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic';
+	add_editor_style( str_replace( ',', '%2C', $font_url ) );
+	add_editor_style( '/assets/css/rowling-editor-styles.css' );
 }
 
 // Add sidebar widget areas
@@ -94,19 +95,20 @@ add_action( 'widgets_init', 'rowling_sidebar_reg' );
 
 function rowling_sidebar_reg() {
 	register_sidebar( array(
-	  'name' => __( 'Sidebar', 'rowling' ),
-	  'id' => 'sidebar',
-	  'description' => __( 'Widgets in this area will be shown in the sidebar.', 'rowling' ),
-	  'before_title' => '<h3 class="widget-title">',
-	  'after_title' => '</h3>',
-	  'before_widget' => '<div class="widget %2$s"><div class="widget-content clearfix">',
-	  'after_widget' => '</div></div>'
-	));
+		'name' => __( 'Sidebar', 'rowling' ),
+		'id' => 'sidebar',
+		'description' => __( 'Widgets in this area will be shown in the sidebar.', 'rowling' ),
+		'before_title' => '<h3 class="widget-title">',
+		'after_title' => '</h3>',
+		'before_widget' => '<div class="widget %2$s"><div class="widget-content clearfix">',
+		'after_widget' => '</div></div>',
+		)
+	);
 }
 
 // Delist the default WordPress recent posts widget
 add_action( 'widgets_init', 'rowling_unregister_default_widgets', 11 );
- 
+
 function rowling_unregister_default_widgets() {
 	unregister_widget( 'WP_Widget_Recent_Posts' );
 	unregister_widget( 'WP_Widget_Recent_Comments' );

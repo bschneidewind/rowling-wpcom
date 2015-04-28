@@ -51,7 +51,8 @@ get_header(); ?>
 						'link_after'  => '</span>',
 						'pagelink'    => '<span class="screen-reader-text">' . __( 'Page', 'rowling' ) . ' </span>%',
 						'separator'   => '<span class="screen-reader-text">, </span>',
-					) );
+						) 
+					);
 					?>
 				</div> <!-- /post-content -->
 				<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>

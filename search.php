@@ -15,11 +15,10 @@ get_header(); ?>
 			<h4><?php printf( __( 'Search results: %s', '_s' ), get_search_query() ); ?></h4>
 
 			<?php
-			if
-			( $wp_query->max_num_pages > 1 ) :
-				$paged = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
-			$maxpage = $wp_query->max_num_pages;
-			printf( __( '<p>Page %u<span class="sep">/</span>%s</p>' ), intval( $paged ), intval( $maxpage ) );
+			if ( $wp_query->max_num_pages > 1 ) :
+				$paged   = get_query_var( 'paged' ) ? absint( get_query_var( 'paged' ) ) : 1;
+				$maxpage = $wp_query->max_num_pages;
+				printf( __( '<p>Page %u<span class="sep">/</span>%s</p>' ), intval( $paged ), intval( $maxpage ) );
 			endif;
 			?>
 		</div> <!-- /page-title -->

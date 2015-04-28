@@ -24,7 +24,7 @@
 			<div class="section-inner clearfix">
 				<?php wp_nav_menu( array( 'theme_location' => 'secondary', 'menu_id' => 'secondary-menu', 'menu_class' => 'secondary-menu', 'container' => 'false' ) ); ?>
 
-				<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' => '<span class="screen-reader-text">', 'link_after'  => '</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s<li><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li></ul>' ) ); ?>
+				<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' => '<span class="screen-reader-text">', 'link_after' => '</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s<li><a class="search-toggle" href="#"><span class="screen-reader-text">Search</span></a></li></ul>' ) ); ?>
 			</div> <!-- /section-inner -->
 		</div> <!-- /top-nav -->
 
