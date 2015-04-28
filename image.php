@@ -19,8 +19,7 @@ get_header(); ?>
 			<div class="post-inner">
 				<div class="post-content clearfix">
 					<div class="entry-attachment">
-						<?php echo wp_get_attachment_image( get_the_ID() ); ?>
-					
+						<?php echo wp_get_attachment_image( $post->ID, 'post-image' ); ?>
 						<?php if ( has_excerpt() ) : ?>
 							<div class="entry-caption">
 								<?php the_excerpt(); ?>
