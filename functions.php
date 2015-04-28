@@ -75,14 +75,15 @@ function rowling_add_editor_styles() {
 add_action( 'widgets_init', 'rowling_sidebar_reg' ); 
 
 function rowling_sidebar_reg() {
-	register_sidebar( array(
-		'name' => __( 'Sidebar', 'rowling' ),
-		'id' => 'sidebar',
-		'description' => __( 'Widgets in this area will be shown in the sidebar.', 'rowling' ),
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
-		'before_widget' => '<div class="widget %2$s"><div class="widget-content clearfix">',
-		'after_widget' => '</div></div>',
+	register_sidebar(
+		array(
+			'name' => __( 'Sidebar', 'rowling' ),
+			'id' => 'sidebar',
+			'description' => __( 'Widgets in this area will be shown in the sidebar.', 'rowling' ),
+			'before_title' => '<h3 class="widget-title">',
+			'after_title' => '</h3>',
+			'before_widget' => '<div class="widget %2$s"><div class="widget-content clearfix">',
+			'after_widget' => '</div></div>',
 		)
 	);
 }
