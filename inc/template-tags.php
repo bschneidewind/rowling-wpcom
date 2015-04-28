@@ -386,7 +386,7 @@ function adjacent_image_link( $prev = true, $size = 'thumbnail', $text = false )
 	 * @param string $size          Image size.
 	 * @param string $text          Link text.
 	 */
-	echo apply_filters( "{$adjacent}_image_link", $output, $attachment_id, $size, $text );
+	echo esc_attr( apply_filters( "{$adjacent}_image_link", $output, $attachment_id, $size, $text ) );
 }
 endif;
 

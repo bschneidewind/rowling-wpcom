@@ -109,10 +109,12 @@ add_action( 'widgets_init', 'rowling_unregister_default_widgets', 11 );
  
 function rowling_unregister_default_widgets() {
 	unregister_widget( 'WP_Widget_Recent_Posts' );
+	unregister_widget( 'WP_Widget_Recent_Comments' );
 }
 
 // Add theme widgets
 require_once ( get_template_directory() . '/widgets/recent-posts.php' );
+require_once ( get_template_directory() . '/widgets/recent-comments.php' );
 
 // Custom read more link text
 add_filter( 'the_content_more_link', 'rowling_modify_read_more_link' );
