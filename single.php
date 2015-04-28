@@ -4,7 +4,7 @@
  *
  * @package Rowling
  */
- 
+
 get_header(); ?>
 
 <div class="wrapper section-inner clearfix">
@@ -32,19 +32,19 @@ get_header(); ?>
 
 			</div> <!-- /post-header -->
 
-			<?php 
+			<?php
 			$post_format = get_post_format();
-			if ( $post_format == 'gallery' ) : 
+			if ( $post_format == 'gallery' ) :
 				rowling_flexslider( 'post-image' );
 			elseif ( has_post_thumbnail() ) : ?>
-
-			<div class="post-image clearfix">
-				<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image img-responsive' ) ); ?>
-				<?php 
-				$get_description = get_post( get_post_thumbnail_id() )->post_excerpt;
-				if( !empty( $get_description ) ) {
-					printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
-				} ?>
+			
+						<div class="post-image clearfix">
+							<?php printf( '<a href="%s" title="%s">%s</a>', get_permalink(), the_title_attribute( 'echo=0' ), the_post_thumbnail( 'post-image img-responsive' ) ); ?>
+							<?php
+			$get_description = get_post( get_post_thumbnail_id() )->post_excerpt;
+			if ( ! empty( $get_description ) ) {
+				printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $get_description ) );
+			} ?>
 			</div> <!-- /post-image -->
 
 			<?php endif; ?>
@@ -57,20 +57,20 @@ get_header(); ?>
 				</div>
 					<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>
 					<?php $args = array(
-						'before'		=> '<p class="page-links clearfix"><span class="title">' . __( 'Pages:','rowling' ) . '</span>',
-						'after'			=> '</p>',
-						'link_before'	=> '<span>',
-						'link_after'	=> '</span>',
-						'separator'		=> '',
-						'pagelink'		=> '%',
-						'echo'			=> 1
+						'before'  => '<p class="page-links clearfix"><span class="title">' . __( 'Pages:', 'rowling' ) . '</span>',
+						'after'   => '</p>',
+						'link_before' => '<span>',
+						'link_after' => '</span>',
+						'separator'  => '',
+						'pagelink'  => '%',
+						'echo'   => 1,
 					);
-					wp_link_pages( $args ); 
+					wp_link_pages( $args );
 					?>
 
 				<?php if ( has_tag() ) : ?>
 				<div class="post-tags">
-					<?php the_tags( '','' ); ?>
+					<?php the_tags( '', '' ); ?>
 				</div>
 				<?php endif; ?>
 

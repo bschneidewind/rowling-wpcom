@@ -4,7 +4,7 @@
  *
  * @package Rowling
  */
- 
+
 get_header(); ?>
 
 	<div class="wrapper section-inner clearfix">
