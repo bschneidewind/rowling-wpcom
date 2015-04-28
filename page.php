@@ -25,10 +25,10 @@ get_header(); ?>
 				<?php endif; ?>
 
 				<div class="post-inner">
-					<div class="post-content">
+					<div class="post-content clearfix">
 						<?php the_content(); ?>
-						<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>
 					</div> <!-- /post-content -->
+					<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>
 				</div> <!-- /post-inner -->
 
 				<?php comments_template( '', true ); ?>

@@ -52,8 +52,9 @@ get_header(); ?>
 			<?php rowling_related_posts( '3' ); // Number of related posts to display ?>
 
 			<div class="post-inner">
-				<div class="post-content">
+				<div class="post-content clearfix">
 					<?php the_content(); ?>
+				</div>
 					<?php edit_post_link( __( 'Edit', 'rowling' ), '<p class="page-edit-link"><span class="fa fw fa-wrench"></span>', '</p>' ); ?>
 					<?php $args = array(
 						'before'		=> '<p class="page-links clearfix"><span class="title">' . __( 'Pages:','rowling' ) . '</span>',
@@ -66,7 +67,6 @@ get_header(); ?>
 					);
 					wp_link_pages( $args ); 
 					?>
-				</div>
 
 				<?php if ( has_tag() ) : ?>
 				<div class="post-tags">
