@@ -240,7 +240,7 @@ function rowling_related_posts( $number_of_posts ) { ?>
 				
 				<?php 
 				endwhile;
-				else: 
+				else :
 				?>
 
 				<?php
@@ -288,7 +288,7 @@ function rowling_related_posts( $number_of_posts ) { ?>
 
 		</div> <!-- /row -->
 
-		<?php wp_reset_postdata(); ?>
+		<?php reset_post_query(); ?>
 
 	</div> <!-- /related-posts -->
 
