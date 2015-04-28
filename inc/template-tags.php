@@ -185,7 +185,7 @@ if ( ! function_exists( 'rowling_related_posts' ) ) :
 function rowling_related_posts( $number_of_posts ) { ?>
 	
 	<div class="related-posts">
-		<p class="related-posts-title"><?php esc_html_e('Read Next &rarr;','rowling'); ?></p>
+		<p class="related-posts-title"><?php esc_html_e( 'Read Next &rarr;', 'rowling' ); ?></p>
 		<div class="row">
 			
 			<?php // Check for posts in the same category
@@ -214,7 +214,7 @@ function rowling_related_posts( $number_of_posts ) { ?>
 
 						<?php if ( has_post_thumbnail() ) : ?>
 
-							<?php the_post_thumbnail('post-image-thumb') ?>
+							<?php the_post_thumbnail( 'post-image-thumb' ); ?>
 
 						<?php endif; ?>
 
@@ -252,7 +252,7 @@ function rowling_related_posts( $number_of_posts ) { ?>
 
 							<?php if ( has_post_thumbnail() ) : ?>
 
-								<?php the_post_thumbnail('post-image-thumb') ?>
+								<?php the_post_thumbnail( 'post-image-thumb' ); ?>
 
 							<?php endif; ?>
 
