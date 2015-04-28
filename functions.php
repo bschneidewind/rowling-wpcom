@@ -78,7 +78,7 @@ function rowling_sidebar_reg() {
 	register_sidebar(
 		array(
 			'name' => __( 'Sidebar', 'rowling' ),
-			'id' => 'sidebar',
+			'id' => 'sidebar-1',
 			'description' => __( 'Widgets in this area will be shown in the sidebar.', 'rowling' ),
 			'before_title' => '<h3 class="widget-title">',
 			'after_title' => '</h3>',
