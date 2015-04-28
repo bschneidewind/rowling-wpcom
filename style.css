@@ -1211,6 +1211,7 @@ body a,
 .post-content { 
 	font-family: 'Lato', sans-serif;
 	font-size: 1em;
+	word-wrap: break-word;
 }
 
 .post-content a { border-bottom: 1px solid #ddd; }

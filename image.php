@@ -21,11 +21,13 @@ get_header(); ?>
 					<?php esc_html_e( 'View Next &rarr;', 'rowling' ); ?>
 				</p>
 				<div class="nav-previous">
-					<?php previous_image_link( false, __( 'Previous Image', 'rowling' ) ); ?>
+					<?php adjacent_image_link( true, 'thumbnail', false ); ?>
+					<h3 class="title"><?php previous_image_link( false, __( 'Previous Image', 'rowling' ) ); ?></h3>
 				</div>
 				<hr>
 				<div class="nav-next">
-					<?php next_image_link( false, __( 'Next Image', 'rowling' ) ); ?>
+					<?php adjacent_image_link( false, 'thumbnail', false ); ?>
+					<h3 class="title"><?php next_image_link( false, __( 'Next Image', 'rowling' ) ); ?></h3>
 				</div>
 			</div>
 
