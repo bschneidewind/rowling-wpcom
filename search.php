@@ -12,7 +12,7 @@ get_header(); ?>
 
 	<?php if ( have_posts() ) : ?>
 		<div class="page-title clearfix">
-			<h4><?php printf( __( 'Search results: %s', '_s' ), get_search_query() ); ?></h4>
+			<h4><?php printf( __( 'Search results: %s', 'rowling' ), get_search_query() ); ?></h4>
 
 			<?php
 			if ( $wp_query->max_num_pages > 1 ) :
@@ -34,7 +34,7 @@ get_header(); ?>
 	<?php else : ?>
 
 		<div class="page-title clearfix">
-			<h4><?php printf( __( 'Search results: %s', '_s' ), get_search_query() ); ?></h4>
+			<h4><?php printf( __( 'Search results: %s', 'rowling' ), get_search_query() ); ?></h4>
 		</div> <!-- /page-title -->
 
 		<div class="post single single-post clearfix">

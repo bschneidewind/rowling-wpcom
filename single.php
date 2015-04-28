@@ -25,7 +25,7 @@ get_header(); ?>
 
 					<?php if ( comments_open() ) : ?>
 						<span class="post-comments">
-							<span class="fa fw fa-comment"></span><?php comments_popup_link( __( 'Leave a comment', '_s' ), __( '1 Comment', '_s' ), __( '% Comments', '_s' ) ); ?>
+							<span class="fa fw fa-comment"></span><?php comments_popup_link( __( 'Leave a comment', 'rowling' ), __( '1 Comment', 'rowling' ), __( '% Comments', 'rowling' ) ); ?>
 						</span>
 					<?php endif; ?>
 				</div> <!-- /post-meta -->
