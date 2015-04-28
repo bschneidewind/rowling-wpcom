@@ -12,23 +12,6 @@
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
  */
-$comments_args = array(
-	'title_reply' => '<span class="fa fw fa-pencil"></span>' . _( 'Leave a Reply' ),
-	'title_reply_to' => '<span class="fa fw fa-pencil"></span>' . _( 'Leave a Reply to' ),
-	'comment_notes_before' => '',
-	'comment_notes_after' => '',
-	
-	'comment_field' => '<p class="comment-form-comment"><label for="comment">' . __( 'Comment','rowling' ) . ( $req ? '<span class="required">*</span>' : '' ) . '</label><textarea id="comment" name="comment" cols="45" rows="6" required></textarea></p>',
-	
-	'fields' => apply_filters( 'comment_form_default_fields', array(
-		'author' => '<p class="comment-form-author"><label for="author">' . __( 'Name','rowling' ) . ( $req ? '<span class="required">*</span>' : '' ) . '</label> <input id="author" name="author" type="text" value="' . esc_attr( $commenter['comment_author'] ) . '" size="30" /></p>',
-		
-		'email' => '<p class="comment-form-email"><label for="email">' . __( 'Email','rowling' ) . ( $req ? '<span class="required">*</span>' : '' ) . '</label> <input id="email" name="email" type="text" value="' . esc_attr(  $commenter['comment_author_email'] ) . '" size="30" /></p>',
-		
-		'url' => '<p class="comment-form-url"><label for="url">' . __( 'Website','rowling' ) . '</label><input id="url" name="url" type="text" value="' . esc_attr( $commenter['comment_author_url'] ) . '" size="30" /></p>',
-		)
-	)
-);
 
 if ( post_password_required() ) {
 	return;
@@ -92,6 +75,6 @@ if ( have_comments() ) : ?>
 	<p class="no-comments"><span class="fa fw fa-times"></span><?php esc_html_e( 'Comments are Closed', 'rowling' ); ?></p>	
 <?php elseif ( comments_open() ) : ?>
 	<div class="respond-container">
-		<?php comment_form( $comments_args ); ?>
+		<?php comment_form(); ?>
 	</div> <!-- /respond-container -->
 <?php endif;
