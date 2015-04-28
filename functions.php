@@ -14,17 +14,6 @@ function rowling_setup() {
 	// Add post format support
 	add_theme_support( 'post-formats', array( 'gallery' ) );
 
-	add_theme_support( 'infinite-scroll', array(
-		'type' => 'scroll',
-		'footer_widgets' => false,
-		'container' => 'content',
-		'wrapper' => true,
-		'render' => false,
-		'footer' => 'page',
-		'posts_per_page' => false,
-		)
-	);
-
 	// Set content-width
 	global $content_width;
 	if ( ! isset( $content_width ) ) $content_width = 816;
@@ -51,22 +40,14 @@ add_action( 'wp_enqueue_scripts', 'rowling_load_assets' );
 
 function rowling_load_assets() {
 	// Register all styles
-	wp_register_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
-	wp_register_style( 'rowling_google_lato', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
-	wp_register_style( 'rowling_style', get_stylesheet_uri() );
+	wp_enqueue_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
+	wp_enqueue_style( 'rowling_google_lato', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
+	wp_enqueue_style( 'rowling_style', get_stylesheet_uri() );
 
 	// Register all scripts
-	wp_register_script( 'rowling_doubletap', get_template_directory_uri() . '/assets/js/doubletaptogo.js', array( 'jquery' ), '', true );
-	wp_register_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/vendor/jquery.flexslider.js', array( 'jquery' ), '', true );
-	wp_register_script( 'rowling_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '', true );
-
-	wp_enqueue_script( 'rowling_doubletap' );
-	wp_enqueue_script( 'rowling_flexslider' );
-	wp_enqueue_script( 'rowling_global' );
-
-	wp_enqueue_style( 'rowling_fontawesome' );
-	wp_enqueue_style( 'rowling_google_lato' );
-	wp_enqueue_style( 'rowling_style' );
+	wp_enqueue_script( 'rowling_doubletap', get_template_directory_uri() . '/assets/js/doubletaptogo.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'rowling_flexslider', get_template_directory_uri() . '/assets/js/vendor/jquery.flexslider.js', array( 'jquery' ), '', true );
+	wp_enqueue_script( 'rowling_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery' ), '', true );
 
 	if ( is_singular() ) {
 		wp_enqueue_script( 'comment-reply' );
