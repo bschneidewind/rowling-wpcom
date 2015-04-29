@@ -1,17 +1,32 @@
 /**
- * This file adds some LIVE to the Theme Customizer live preview. To leverage
- * this, set your custom settings to 'postMessage' and then add your handling
- * here. Your javascript should grab settings from customizer controls, and
- * then make any necessary changes to the page using jQuery.
+ * Theme Customizer enhancements for a better user experience.
+ *
+ * Contains handlers to make Theme Customizer preview reload changes asynchronously.
  */
-(function($) {
-	//Update site accent color in real time...
-	wp.customize('accent_color', function(value) {
-		value.bind(function(newval) {
-			$('.post-title a:hover').css('color', newval);
-			$('.main-menu .current-menu-item:before').css('color', newval);
-			$('.main-menu .current_page_item:before').css('color', newval);
-			$('.post-content blockquote:before').css('color', newval);
-		});
-	});
-})(jQuery);
+
+( function( $ ) {
+	// Site title and description.
+	wp.customize( 'blogname', function( value ) {
+		value.bind( function( to ) {
+			$( '.blog-title a' ).text( to );
+		} );
+	} );
+	wp.customize( 'blogdescription', function( value ) {
+		value.bind( function( to ) {
+			$( '.blog-description' ).text( to );
+		} );
+	} );
+
+	wp.customize( 'header_textcolor', function( value ) {
+		value.bind( function( to ) {
+			$( '.blog-title, .blog-description' ).css( { 'color': to } );
+		} );
+	} );
+
+	wp.customize( 'accent_color', function( value ) {
+		value.bind( function( to ) {
+			$( '.post-title a:hover, .main-menu .current-menu-item:before, .main-menu .current_page_item:before, .post-content blockquote:before' ).css( { 'color': to } );
+		} );
+	} );
+
+} )( jQuery );
