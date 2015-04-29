@@ -858,60 +858,9 @@ body a,
 
 /* Format Gallery ------------------------------------- */
 
-
-.flexslider { 
-	position: relative; 
-	overflow: hidden;
+.single-format-gallery .post-inner {
+	padding-left:0;
 }
-
-.single-post .flexslider { 	margin-bottom: 40px; }
-
-.flexslider .slides li { 
-	display: none;
-	position: relative; 
-}
-
-.flexslider .slides li:first-child { display: block; }
-
-.flexslider img { display: block; }
-
-/* Slider Navigation */
-
-.flex-direction-nav {
-	display: none;
-	position: absolute;
-	top: 50%;
-	right: 0;
-	left: 0;
-	margin-top: -13px;
-}
-
-.single .flex-direction-nav { display: block; }
-
-.flex-direction-nav a {
-	display: block;
-	color: #fff;
-	position: absolute;
-}
-
-.flex-direction-nav a:before { 
-	font: 32px/1 'FontAwesome'; 
-	text-shadow: 0 1px 0 rgba(0,0,0,0.25);
-}
-
-.flex-direction-nav .flex-prev { left: 2.5%; }
-.flex-direction-nav .flex-prev:before { content: "\f190"; }
-
-.flex-direction-nav .flex-next { right: 2.5%; }
-.flex-direction-nav .flex-next:before { content: "\f18e"; }
-
-.flex-direction-nav a:hover { color: #fff; }
-
-/* Single Post */
-
-.single-post .flex-direction-nav { margin-top: -17px; }
-
-.single-post .flex-direction-nav a:before { font-size: 40px; }
 
 
 /* -------------------------------------------------------------------------------- */

@@ -57,67 +57,6 @@ function rowling_get_comment_excerpt( $comment_ID = 0, $num_words = 20 ) {
 }
 endif;
 
-if ( ! function_exists( 'rowling_flexslider' ) ) :
-// Flexslider function for format-gallery
-function rowling_flexslider( $size ) {
-
-	if ( is_page() ) :
-		$attachment_parent = $post->ID;
-	else : 
-		$attachment_parent = get_the_ID();
-	endif;
-
-	if ( $images = get_posts(
-		array(
-			'post_parent' => $attachment_parent,
-			'post_type' => 'attachment',
-			'numberposts' => -1, // show all
-			'post_status' => null,
-			'post_mime_type' => 'image',
-			'orderby' => 'menu_order',
-			'order' => 'ASC',
-		) 
-	) 
-) { ?>
-
-		<?php if ( ! is_single() ) : // Make it a link if it's an archive ?>
-
-			<a class="flexslider" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
-
-		<?php else : // ...and just a div if it's a single post ?>
-
-			<div class="flexslider clearfix">
-
-		<?php endif; ?>
-
-			<ul class="slides">
-
-				<?php 
-				foreach ( $images as $image ) { 
-				$attimg = wp_get_attachment_image( $image->ID, $size ); ?>
-
-				<li>
-				<?php echo esc_url( $attimg );
-
-				if ( ! empty( $image->post_excerpt ) && is_single() ) :
-					printf( '<p class="post-image-caption"><span class="fa fw fa-camera"></span>%s</p>', esc_html( $image->post_excerpt ) );
-				endif; ?>
-				</li>
-
-				<?php }; ?>
-
-			</ul>
-
-		<?php 
-		if ( ! is_single() ) {
-			echo '</a>';
-		} else {
-			echo '</div>';
-		}
-	}
-} // end of function rowling_flexslider
-endif;
-
 if ( ! function_exists( 'rowling_comment' ) ) :
 // Rowling comment function
 function rowling_comment( $comment, $args, $depth ) {
