@@ -32,14 +32,6 @@
 	// Dropdown menus on touch devices
 	$('.primary-menu li:has(ul)').doubleTapToGo();
 	$('.secondary-menu li:has(ul)').doubleTapToGo();
-	// Load Flexslider
-	$(".flexslider").flexslider({
-		animation: "slide",
-		controlNav: false,
-		prevText: "",
-		nextText: "",
-		smoothHeight: true
-	});
 	// smooth scroll for any anchor link on same page
 	$('a[href*=#]:not([href=#])').click(function() {
 		if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {

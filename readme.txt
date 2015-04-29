@@ -50,6 +50,4 @@ FontAwesome code license : MIT License http://opensource.org/licenses/MIT
 
 DoubleTapToGo.js license : MIT License http://opensource.org/licenses/MIT
 
-Flexslider.js license : GNU GPL v2 http://www.gnu.org/licenses/gpl-2.0.html
-
 Licenses for images used in screenshot.png : Creative Commons Zero http://creativecommons.org/publicdomain/zero/1.0/

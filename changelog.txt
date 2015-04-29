@@ -12,8 +12,8 @@ Version 1.10 (2015-04-26)
 - Added .img-responsive class for responsive image handling
 - Added image.php
 - Added rtl.css
-- Removed custom recent comments widget, use default WordPress.com recent comments widget
 - Removed custom flickr widget, use default WordPress.com flick widget
+- Removed Flexslider and setup standard gallery post formats
 
 
 
