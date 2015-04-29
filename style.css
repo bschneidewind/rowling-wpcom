@@ -858,9 +858,7 @@ body a,
 
 /* Format Gallery ------------------------------------- */
 
-.single-format-gallery .post-inner {
-	padding-left:0;
-}
+
 
 
 /* -------------------------------------------------------------------------------- */
@@ -941,6 +939,14 @@ body a,
 	padding-left: 200px; 
 	position: relative;
 	z-index: 5;
+}
+
+.single-format-gallery .post-inner {
+	padding-left:0;
+}
+
+.single-format-gallery .post-content a {
+	border-bottom: none;
 }
 
 
