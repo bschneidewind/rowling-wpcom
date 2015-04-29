@@ -288,7 +288,7 @@ function rowling_related_posts( $number_of_posts ) { ?>
 
 		</div> <!-- /row -->
 
-		<?php reset_post_query(); ?>
+		<?php wp_reset_query(); ?>
 
 	</div> <!-- /related-posts -->
 

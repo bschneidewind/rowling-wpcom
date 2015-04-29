@@ -2164,7 +2164,7 @@ div.comment { margin-top: 25px; }
 	margin-top: 40px;
 }
 
-.widget-title {
+.widget-title, .widgettitle {
 	display: inline-block;
 	padding-bottom: 3px;
 	border-bottom: 2px solid #0093C2;
@@ -2190,7 +2190,7 @@ div.comment { margin-top: 25px; }
 
 .widget-content p:first-child { margin-top: 0; }
 
-.widget-content li {
+.widget-content li, .widget_categories li, .widget_archive li, .widget_rowling_recent_posts li {
 	line-height: 140%;
 	padding: 12px 0;
 	border-bottom: 1px solid #ddd;
