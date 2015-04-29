@@ -41,7 +41,7 @@ add_action( 'wp_enqueue_scripts', 'rowling_load_assets' );
 function rowling_load_assets() {
 	// Register all styles
 	wp_enqueue_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
-	wp_enqueue_style( 'rowling_google_lato', '//fonts.googleapis.com/css?family=Lato:400,700,900,400italic,700italic|Merriweather:700,900,400italic' );
+	wp_enqueue_style( 'rowling-fonts', theme_slug_fonts_url(), array(), null );
 	wp_enqueue_style( 'rowling_style', get_stylesheet_uri() );
 
 	// Register all scripts
