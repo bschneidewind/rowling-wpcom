@@ -58,7 +58,7 @@ function rowling_load_assets() {
 add_action( 'admin_print_styles-appearance_page_custom-header', 'rowling_admin_scripts_styles' );
 
 function rowling_admin_scripts_styles() {
-    wp_enqueue_style( 'rowling-fonts', rowling_fonts_url(), array(), null );
+	wp_enqueue_style( 'rowling-fonts', rowling_fonts_url(), array(), null );
 }
 
 // Register and enqueue admin stylesheet
