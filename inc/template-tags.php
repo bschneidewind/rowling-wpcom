@@ -189,7 +189,7 @@ if ( ! function_exists( 'rowling_related_posts' ) ) :
 function rowling_related_posts( $number_of_posts ) { ?>
 	
 	<div class="related-posts">
-		<p class="related-posts-title"><?php esc_html_e( 'Read Next &rarr;', 'rowling' ); ?></p>
+		<p class="related-posts-title"><?php esc_html_e( 'Related Posts &rarr;', 'rowling' ); ?></p>
 		<div class="row">
 			
 			<?php // Check for posts in the same category
