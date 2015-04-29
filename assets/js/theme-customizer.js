@@ -19,7 +19,7 @@
 
 	wp.customize( 'header_textcolor', function( value ) {
 		value.bind( function( to ) {
-			$( '.post-title a:hover, .main-menu .current-menu-item:before, .main-menu .current_page_item:before, .post-content blockquote:before' ).css( { 'color': to } );
+			$( '.blog-title, .blog-description, .post-title a:hover, .main-menu .current-menu-item:before, .main-menu .current_page_item:before, .post-content blockquote:before' ).css( { 'color': to } );
 		} );
 	} );
 
