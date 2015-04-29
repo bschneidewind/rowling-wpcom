@@ -22,12 +22,8 @@ get_header(); ?>
 			endif;
 			?>
 		</div> <!-- /page-title -->
-
-		<div class="posts" id="posts">
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', get_post_format() ); ?>
-			<?php endwhile; ?>
-		</div> <!-- /posts -->
+		
+		<?php get_template_part( 'content', 'search' ); ?>
 
 		<?php rowling_archive_navigation(); ?>
 
