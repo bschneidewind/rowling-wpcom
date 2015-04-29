@@ -46,7 +46,7 @@ class Rowling_Recent_Comments extends WP_Widget {
 			?>
 
 							<li>
-								<a href="<?php echo esc_url( get_permalink( $comment->comment_post_ID ) . '#comment' . $comment->comment_ID ); ?>" title="<?php esc_html_e( 'Comment to', 'rowling' ); echo ' ' . get_the_title( $comment->comment_post_ID ) . ', '; esc_html_e( 'posted', 'rowling' ); echo ' ' . get_the_time( get_option( 'date_format' ) ); ?>">
+								<a href="<?php echo esc_url( get_permalink( $comment->comment_post_ID ) . '#comment-' . $comment->comment_ID ); ?>" title="<?php esc_html_e( 'Comment to', 'rowling' ); echo ' ' . get_the_title( $comment->comment_post_ID ) . ', '; esc_html_e( 'posted', 'rowling' ); echo ' ' . get_the_time( get_option( 'date_format' ) ); ?>">
 									<div class="post-icon">
 										<?php echo get_avatar( get_comment_author_email( $comment->comment_ID ), $size = '100' ); ?>
 									</div>
