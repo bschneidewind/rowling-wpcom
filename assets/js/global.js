@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+( function( $ ) {
 	// Toggle mobile menu
 	$(".nav-toggle").on("click", function() {
 		$(this).toggleClass("active");
@@ -73,4 +73,4 @@ jQuery(document).ready(function($) {
 	$(window).resize(function() {
 		resizeVideo(vidSelector);
 	});
-});
+} )( jQuery );
