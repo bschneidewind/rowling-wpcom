@@ -10,7 +10,7 @@ if ( ! isset( $themecolors ) ) {
 	);
 }
 
-function theme_slug_fonts_url() {
+function rowling_fonts_url() {
     $fonts_url = '';
  
     /* Translators: If there are characters in your language that are not
@@ -29,7 +29,7 @@ function theme_slug_fonts_url() {
         $font_families = array();
  
         if ( 'off' !== $lato ) {
-            $font_families[] = 'Lota:400,700,900,400italic,700italic';
+            $font_families[] = 'Lato:400,700,900,400italic,700italic';
         }
  
         if ( 'off' !== $merriweather ) {

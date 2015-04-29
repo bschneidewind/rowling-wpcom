@@ -41,7 +41,7 @@ add_action( 'wp_enqueue_scripts', 'rowling_load_assets' );
 function rowling_load_assets() {
 	// Register all styles
 	wp_enqueue_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
-	wp_enqueue_style( 'rowling-fonts', theme_slug_fonts_url(), array(), null );
+	wp_enqueue_style( 'rowling-fonts', rowling_fonts_url(), array(), null );
 	wp_enqueue_style( 'rowling_style', get_stylesheet_uri() );
 
 	// Register all scripts
@@ -54,20 +54,24 @@ function rowling_load_assets() {
 	}
 }
 
+//Add google fonts to admin in the Appearance -> Header section
+add_action( 'admin_print_styles-appearance_page_custom-header', 'rowling_admin_scripts_styles' );
+
+function rowling_admin_scripts_styles() {
+    wp_enqueue_style( 'rowling-fonts', rowling_fonts_url(), array(), null );
+}
+
 // Register and enqueue admin stylesheet
 add_action( 'admin_enqueue_scripts', 'load_admin_styles' );
 
 function load_admin_styles() {
-	wp_register_style( 'rowling_admin_style', get_template_directory_uri() . '/assets/css/admin-style.css' );
-	wp_enqueue_style( 'rowling_admin_style' );
+	wp_enqueue_style( 'rowling_admin_style', get_template_directory_uri() . '/assets/css/admin-style.css' );
 }
 
 // Add editor styles
 add_action( 'admin_init', 'rowling_add_editor_styles' );
 
 function rowling_add_editor_styles() {
-	$font_url = '//fonts.googleapis.com/css?family=Lato:400,700,900|Playfair+Display:400,700,400italic';
-	add_editor_style( str_replace( ',', '%2C', $font_url ) );
 	add_editor_style( '/assets/css/rowling-editor-styles.css' );
 }
 
