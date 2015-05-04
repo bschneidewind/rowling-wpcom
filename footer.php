@@ -14,7 +14,7 @@
 					<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'rowling' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'rowling' ), 'WordPress' ); ?></a>
 				</div> <!-- /copyright -->
 				<div class="attribution">
-					<?php printf( __( 'Theme: %1$s by %2$s.', 'rowling' ), 'Rowling', '<a href="http://www.andersnoren.se" rel="designer">Anders Nor&eacute;n</a>' ); ?>
+					<?php printf( __( 'Theme: %1$s by %2$s.', 'rowling' ), 'Rowling', '<a href="http://automattic.com/" rel="designer">Automattic</a>' ); ?>
 				</div> <!-- /attribution -->
 			</div>  <!-- /section inner -->
 		</div> <!-- /credits -->
