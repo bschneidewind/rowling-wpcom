@@ -520,6 +520,10 @@ body a,
 	display: block;
 }
 
+.site-logo, .site-logo img {
+	max-width:100%;
+	height:auto;
+}
 /* Footer ----------------------------------------- */
 
 

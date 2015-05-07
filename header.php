@@ -38,8 +38,8 @@
 			<div class="header">
 				<div class="section-inner">
 
-					<?php if ( function_exists( 'the_site_logo' ) ) : ?>
-						<?php the_site_logo(); ?>
+					<?php if ( function_exists( 'jetpack_the_site_logo' ) ) : ?>
+						<?php jetpack_the_site_logo(); ?>
 					<?php else : ?>
 
 					<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) . ' &mdash; ' . get_bloginfo( 'description', 'display' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h2>
