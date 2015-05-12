@@ -41,7 +41,7 @@ add_action( 'wp_enqueue_scripts', 'rowling_load_assets' );
 function rowling_load_assets() {
 	// Register all styles
 	wp_enqueue_style( 'rowling_fontawesome', get_template_directory_uri() . '/assets/fonts/fa/css/font-awesome.css' );
-	wp_enqueue_style( 'rowling-fonts', rowling_fonts_url(), array(), null );
+	wp_enqueue_style( 'rowling_fonts', rowling_fonts_url(), array(), null );
 	wp_enqueue_style( 'rowling_style', get_stylesheet_uri() );
 
 	// Register all scripts
@@ -57,7 +57,7 @@ function rowling_load_assets() {
 add_action( 'admin_print_styles-appearance_page_custom-header', 'rowling_admin_scripts_styles' );
 
 function rowling_admin_scripts_styles() {
-	wp_enqueue_style( 'rowling-fonts', rowling_fonts_url(), array(), null );
+	wp_enqueue_style( 'rowling_fonts', rowling_fonts_url(), array(), null );
 }
 
 // Register and enqueue admin stylesheet
@@ -96,6 +96,44 @@ add_filter( 'the_content_more_link', 'rowling_modify_read_more_link' );
 
 function rowling_modify_read_more_link() {
 	return '<p><a class="more-link" href="' . get_permalink() . '">' . __( 'Read More', 'rowling' ) . '</a></p>';
+}
+
+// Setup google fonts URL function
+function rowling_fonts_url() {
+	$fonts_url = '';
+
+	/* Translators: If there are characters in your language that are not
+	* supported by Lato, translate this to 'off'. Do not translate
+	* into your own language.
+	*/
+	$lato = _x( 'on', 'Lato font: on or off', 'rowling' );
+
+	/* Translators: If there are characters in your language that are not
+	* supported by Merriweather, translate this to 'off'. Do not translate
+	* into your own language.
+	*/
+	$merriweather = _x( 'on', 'Open Sans font: on or off', 'rowling' );
+
+	if ( 'off' !== $lato || 'off' !== $merriweather ) {
+		$font_families = array();
+
+		if ( 'off' !== $lato ) {
+			$font_families[] = 'Lato:400,700,900,400italic,700italic';
+		}
+
+		if ( 'off' !== $merriweather ) {
+			$font_families[] = 'Merriweather:700,900,400italic';
+		}
+
+		$query_args = array(
+			'family' => urlencode( implode( '|', $font_families ) ),
+			'subset' => urlencode( 'latin,latin-ext' ),
+		);
+
+		$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
+	}
+	
+	return $fonts_url;
 }
 
 // Setup WordPress.com specific items

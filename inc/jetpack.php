@@ -5,16 +5,17 @@ function rowling_jetpack_setup() {
 	 * Add theme support for Infinite Scroll.
 	 * See: http://jetpack.me/support/infinite-scroll/
 	 */
-	add_theme_support( 'infinite-scroll', array(
+	add_theme_support(
 		'infinite-scroll', array(
-			'type' => 'scroll',
-			'footer_widgets' => false,
-			'container' => 'content',
-			'wrapper' => true,
-			'render' => false,
-			'footer' => 'page',
-			'posts_per_page' => false,
-			)
+			'infinite-scroll', array(
+				'type' => 'scroll',
+				'footer_widgets' => false,
+				'container' => 'content',
+				'wrapper' => true,
+				'render' => false,
+				'footer' => 'page',
+				'posts_per_page' => false,
+			),
 		)
 	);
 
