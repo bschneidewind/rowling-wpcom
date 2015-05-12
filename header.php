@@ -38,16 +38,11 @@
 			<div class="header">
 				<div class="section-inner">
 
-					<?php if ( function_exists( 'jetpack_the_site_logo' ) ) : ?>
-						<?php jetpack_the_site_logo(); ?>
-					<?php else : ?>
-
-					<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) . ' &mdash; ' . get_bloginfo( 'description', 'display' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h2>
-					<?php $description = get_bloginfo( 'description', 'display' );
-					if ( $description || is_customize_preview() ) : ?>
-						<h4 class="blog-description"><?php echo esc_attr( $description ); ?></h4>
-					<?php endif; ?>
-
+					<?php if ( function_exists( 'jetpack_the_site_logo' ) ) jetpack_the_site_logo(); ?>
+					
+					<?php if ( get_bloginfo( 'description' ) || get_bloginfo( 'title' ) ) : ?>
+						<h2 class="blog-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) . ' &mdash; ' . get_bloginfo( 'description', 'display' ) ); ?>" rel="home"><?php echo esc_html( get_bloginfo( 'name' ) ); ?></a></h2>
+						<h4 class="blog-description"><?php esc_attr_e( get_bloginfo( 'description', 'display' ) ); ?></h4>
 					<?php endif; ?>
 
 					<div class="nav-toggle">
