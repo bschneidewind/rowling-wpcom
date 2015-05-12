@@ -2150,7 +2150,7 @@ div.comment { margin-top: 25px; }
 
 .widget-content p:first-child { margin-top: 0; }
 
-.widget-content li, .widget_categories li, .widget_archive li, .widget_recent_entries li  {
+.widget-content li, .widget_categories li, .widget_archive li, .widget_recent_entries li, .widget_recent_comments li  {
 	line-height: 140%;
 	padding: 12px 0;
 	border-bottom: 1px solid #ddd;
