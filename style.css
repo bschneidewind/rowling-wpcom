@@ -1057,7 +1057,7 @@ body a,
 .post-author { 
 	min-height: 130px;
 	padding: 30px 25px 30px 120px;
-	margin-top: 40px; 
+	margin-top: 20px;
 	background: #26272B;
 	border-radius: 6px;
 	position: relative;
@@ -1960,6 +1960,7 @@ div.comment { margin-top: 25px; }
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	color: #0093C2;
+	margin-bottom:20px;
 	margin-top:20px;
 }
 
