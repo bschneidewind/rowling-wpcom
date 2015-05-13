@@ -10,6 +10,7 @@
 		<div class="credits">
 			<div class="section-inner">
 				<a href="#site-header" class="to-the-top" title="<?php esc_attr_e( 'To the top', 'rowling' ); ?>"><span class="fa fw fa-arrow-up"></span></a>
+				<?php wp_nav_menu( array( 'theme_location' => 'social', 'depth' => 1, 'link_before' => '<span class="screen-reader-text">', 'link_after' => '</span>', 'container' => 'false', 'items_wrap' => '<ul class="social-menu">%3$s</ul>' ) ); ?>
 				<div class="copyright">
 					<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'rowling' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'rowling' ), 'WordPress' ); ?></a>
 				</div> <!-- /copyright -->
