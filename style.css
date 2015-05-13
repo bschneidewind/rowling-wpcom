@@ -240,6 +240,18 @@ body a,
 	padding: 50px 0 50px 3.75%;
 }
 
+/* Full width page template styles */
+.page-template-page-template-full-width .wrapper:before {
+	background:#fff;
+	border-left:none;
+}
+.page-template-page-template-full-width {
+	background:#fff;
+}
+.page-template-page-template-full-width .content {
+	width:90%;
+}
+
 /* -------------------------------------------------------------------------------- */
 /*	3.	Top Navigation
 /* -------------------------------------------------------------------------------- */
